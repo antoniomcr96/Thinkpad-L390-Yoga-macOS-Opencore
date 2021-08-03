@@ -37,9 +37,9 @@ The project is stable. Mac OS 12 works with Windows 11 in dual boot. There are p
 - Some features of YogaSMC kext: for info, follow <a href="https://github.com/zhen-zen/YogaSMC/issues/68#">this issue</a> and feel free to contribute;
 
 <h3>What works</h3>
-Everything else, including gestures, multitouch, touchscreen, EC keys, sleep, hibernation, Handoff, Airdrop, ...
+Everything else, including gestures, multitouch, touchscreen, external video output, EC keys, sleep, hibernation, Handoff, Airdrop, ...
 
-<h2>Useful informations about files</h2>
+<h2>Useful informations</h2>
 <details>
   <summary><b>SSDTs</b></summary>
   
@@ -48,7 +48,30 @@ Everything else, including gestures, multitouch, touchscreen, EC keys, sleep, hi
   - <b>SSDT-GPRW</b>: personal patch to avoid instant wake after sleep with certain usb devices plugged. It patches _PRW methods and must be associated with the relative ACPI patch in config.plist;
   - <b>SSDT-HWAC</b>: patches the access in the only 16-bit field of EC;
   - <b>SSDT-KEYS</b>: makes the brightness keys work (alternative: <a href="https://github.com/acidanthera/BrightnessKeys">Brightness Keys kext</a>) and patches wrong keys for VoodooPS2Controller;
-  - <b>SSDT-PNLF</b>: personal version of the cross-platform <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/Source/SSDT-PNLF.dsl">SSDT</a>, only for Whiskey Lake;
-  . <b>SSDT-YogaSMC</b>: useful SSDTs from <a href="https://github.com/zhen-zen/YogaSMC/tree/master/YogaSMC/SSDTSample">YogaSMC</a> merged together.
-  
+  - <b>SSDT-PNLF</b>: personal version of the cross-platform <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/Source/SSDT-PNLF.dsl">SSDT</a>, only for Coffee Lake;
+  - <b>SSDT-YogaSMC</b>: useful SSDTs from <a href="https://github.com/zhen-zen/YogaSMC/tree/master/YogaSMC/SSDTSample">YogaSMC</a> merged together.
 </details>
+
+<details>
+  <summary><b>config.plist</b></summary>
+  
+  - <b>Device Properties</b>
+    - (0x0)/(0x2,0x0) -> patches platform-ID and device-ID for WhiskeyLake as suggested in the <a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md">Whatevergreen FAQ</a>; patches connectors as suggested in the Dortania guide; patches DVMT allocation;
+    - (0x0)/(0x12,0x0) -> allows AppleIntelPCHPMC to attach to PMCR (pci8086,9df9), not sure if useful;
+    - (0x0)/(0x1C,0x6)/(0x0,0x0) -> for BCM94350ZAE <b>with pin 53 masked</b> (<a href="https://github.com/acidanthera/bugtracker/issues/1646#issuecomment-877663608">why masking this pin is probably better than set aspm to zero</a>); change aspm if you don't mask the pin; remove if you use other Wireless Cards;
+    - (0x0)/(0x1F,0x3) -> audio
+  - <b>Kernel</b>/<b>Quirks</b>:
+    - AppleCpuPmCfgLock / AppleXcpmCfgLock -> Interestingly, system boots even though these two patches are disabled and CFG Lock is enabled. Patching CFGLock (or DVMT), maybe, is possible only with a CH341A + SOIC programmer. Anyway, <a href="https://github.com/digmorepaka/thinkpad-firmware-patches">there isn't any public BIOS patch</a> available for this laptop;
+    - SetApfsTrimTimeout -> probably useful for my ssd that <a href="https://github.com/dortania/bugtracker/issues/192">takes more than 10s</a> to complete trim;
+  - <b>NVRAM</b>
+    - rtc-blacklist -> for hibernation. You can remove the content of this entry, along with HibernationFixUp and RTCMemoryFixUp kexts, if you don't use hibernation. Consider that hibernation needs CSM Support enabled in BIOS (<a href="https://github.com/tylernguyen/x1c6-hackintosh/issues/44#issuecomment-697270496">technical info</a>);
+    - prev-lang:kbd -> change with your language, I'm Italian so I keep it-IT:0;
+ </details>
+ 
+ Battery lasts about 3-4h with a full charge. Undervolting with Voltageshift is a good idea.
+ 
+ ![image](https://user-images.githubusercontent.com/63928525/128098815-9685a7e8-2d6e-4cb4-830d-faf16e744709.png)
+These three I2C devices under PCI0 should be removed but I didn't find a way to solve this. <a href="https://github.com/VoodooI2C/VoodooI2C/issues/408">More info</a>.
+  
+  
+  

@@ -13,11 +13,15 @@ The project is stable. Mac OS 12 works with Windows 11 in dual boot. There are p
 | Memory              | 16 GB DDR4 2400 MHz                             |
 | Hard Disk           | Crucial P2 SSD PCIe NVMe 512 GB         |
 | Integrated Graphics | Intel UHD Graphics 620 |
-| Screen              | 13.3 inch @ 1920 x 1080         |
+| Screen              | 13.3 inch with Touchscreen @ 1920 x 1080         |
 | Sound Card          | Realtek ALC257 @ layout-id 11                                 |
 | Wireless/BT Card       | BCM94350ZAE (Lenovo FRU 00JT494)           |
 
 <img src="./.github/info.png"></div>
+- <b>If your laptop has a Samsung PM981 NVMe SSD you have to buy another one</b>, because that drive <a href="https://github.com/tylernguyen/x1c6-hackintosh/issues/43">doesn't work with macOS</a> at all.
+- The original network card (Intel wireless 9560NGW) works with <a href="https://github.com/OpenIntelWireless">OpenIntelWireless</a>. Anyway, if you're interested in a features such as Airdrop or Handoff, a supported Broadcomm card is a better choice. Check <a href="https://dortania.github.io/Wireless-Buyers-Guide/types-of-wireless-card/m2.html">Dortania Wireless Buyers Guide</a>.
+  - I chose BCM94350ZAE due to the high cost of BCM94360NG. Cards works well with AirDrop, Handoff and Universal Clipboard support. However, Personal Hotspot and Apple Watch Unlock don't work. The guide suggests to set aspm to 0 because the BCM94350ZAE chipset doesn't support power management correctly in macOS. However, I think that it is probably better to mask pin 53 (more info: <a href="https://github.com/acidanthera/bugtracker/issues/794">here</a> and <a href="https://github.com/acidanthera/bugtracker/issues/1646#issuecomment-877663608">here</a>. If you can find and buy it, a BCM94360NG is probably better. Keep in mind that bigger cards such as BCM94350CS2 don't fit this laptop.
+
 <h2>Status</h2>
 <h3>What doesn't work and can't be solved in Hackintosh</h3>
 
@@ -58,7 +62,7 @@ Everything else, including gestures, multitouch, touchscreen, external video out
   - <b>Device Properties</b>
     - (0x0)/(0x2,0x0) -> patches platform-ID and device-ID for WhiskeyLake as suggested in the <a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md">Whatevergreen FAQ</a>; patches connectors as suggested in the Dortania guide; patches DVMT allocation;
     - (0x0)/(0x12,0x0) -> allows AppleIntelPCHPMC to attach to PMCR (pci8086,9df9), not sure if useful;
-    - (0x0)/(0x1C,0x6)/(0x0,0x0) -> for BCM94350ZAE <b>with pin 53 masked</b> (<a href="https://github.com/acidanthera/bugtracker/issues/1646#issuecomment-877663608">why masking this pin is probably better than set aspm to zero</a>); change aspm if you don't mask the pin; remove if you use other Wireless Cards;
+    - (0x0)/(0x1C,0x6)/(0x0,0x0) -> for BCM94350ZAE <b>with pin 53 masked</b>; change aspm if you don't mask the pin; remove if you use other Wireless Cards;
     - (0x0)/(0x1F,0x3) -> audio
   - <b>Kernel</b>/<b>Quirks</b>:
     - AppleCpuPmCfgLock / AppleXcpmCfgLock -> Interestingly, system boots even though these two patches are disabled and CFG Lock is enabled. Patching CFGLock (or DVMT), maybe, is possible only with a CH341A + SOIC programmer. Anyway, <a href="https://github.com/digmorepaka/thinkpad-firmware-patches">there isn't any public BIOS patch</a> available for this laptop;
@@ -70,8 +74,7 @@ Everything else, including gestures, multitouch, touchscreen, external video out
  
  Battery lasts about 3-4h with a full charge. Undervolting with Voltageshift is a good idea.
  
- ![image](https://user-images.githubusercontent.com/63928525/128098815-9685a7e8-2d6e-4cb4-830d-faf16e744709.png)
-These three I2C devices under PCI0 should be removed but I didn't find a way to solve this. <a href="https://github.com/VoodooI2C/VoodooI2C/issues/408">More info</a>.
+<img src="https://user-images.githubusercontent.com/63928525/128098815-9685a7e8-2d6e-4cb4-830d-faf16e744709.png" align="left"> These three I2C devices under PCI0 should be removed but I didn't find a way to solve this. <a href="https://github.com/VoodooI2C/VoodooI2C/issues/408">More info</a>.
   
   
   

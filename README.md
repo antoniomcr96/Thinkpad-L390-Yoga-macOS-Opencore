@@ -47,7 +47,7 @@ Everything else, including gestures, multitouch, touchscreen, external video out
 <details>
   <summary><b>SSDTs</b></summary>
   
-  - <b>SSDT-AWAC-GPIO-INIT</b>: disables RTC device, HPET and enables DYTC for YogaSMC;
+  - <b>SSDT-AWAC-HPET-OSDW</b>: disables RTC device, HPET and injects a OSDW method (useful to check if the system is MacOS);
   - <b>SSDT-DEVICES</b>: patches ADP1 to allow ACPIACAdapter to attach to the device; injects PWRB, DMAC, MCHC, PPMC and BUS0 devices (not sure if it makes the difference); injects PGMM, PMCR, SRAM for cosmetic reasons;
   - <b>SSDT-GPRW</b>: personal patch to avoid instant wake after sleep with certain usb devices plugged. It patches _PRW methods and must be associated with the relative ACPI patch in config.plist;
   - <b>SSDT-HWAC</b>: patches the access in the only 16-bit field of EC;
@@ -74,7 +74,7 @@ Everything else, including gestures, multitouch, touchscreen, external video out
  
  Battery lasts about 3-4h with a full charge. Undervolting with Voltageshift is a good idea.
  
-<img src="https://user-images.githubusercontent.com/63928525/128098815-9685a7e8-2d6e-4cb4-830d-faf16e744709.png" align="left"> These three I2C devices under PCI0 should be removed but I didn't find a way to solve this. <a href="https://github.com/VoodooI2C/VoodooI2C/issues/408">More info</a>.
+<img src="https://user-images.githubusercontent.com/63928525/128098815-9685a7e8-2d6e-4cb4-830d-faf16e744709.png" align="left"> These three I2C devices under PCI0 should be removed but I haven't found a way to solve this. <a href="https://github.com/VoodooI2C/VoodooI2C/issues/408">More info</a>.
   
   
   

@@ -44,8 +44,13 @@ The project is stable. Mac OS 12 works with Windows 11 in dual boot. There are p
 Everything else, including gestures, multitouch, touchscreen, external video output, EC keys, sleep, hibernation, Handoff, Airdrop, ...
 
 <h2>Useful informations</h2>
-<details>
-  <summary><b>SSDTs</b></summary>
+<h3>BIOS</h3>
+
+- Disable Secure Boot;
+- Disable VTd;
+- Disable Wake On Lan
+
+<h3>SSDTs</h3>
   
   - <b>SSDT-AWAC-HPET-OSDW</b>: disables RTC device, HPET and injects a OSDW method (useful to check if the system is MacOS);
   - <b>SSDT-DEVICES</b>: patches ADP1 to allow ACPIACAdapter to attach to the device; injects PWRB, DMAC, MCHC, PPMC and BUS0 devices (not sure if it makes the difference); injects PGMM, PMCR, SRAM for cosmetic reasons;
@@ -54,10 +59,8 @@ Everything else, including gestures, multitouch, touchscreen, external video out
   - <b>SSDT-KEYS</b>: makes the brightness keys work (alternative: <a href="https://github.com/acidanthera/BrightnessKeys">Brightness Keys kext</a>) and patches wrong keys for VoodooPS2Controller;
   - <b>SSDT-PNLF</b>: personal version of the cross-platform <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/Source/SSDT-PNLF.dsl">SSDT</a>, only for Coffee Lake;
   - <b>SSDT-YogaSMC</b>: useful SSDTs from <a href="https://github.com/zhen-zen/YogaSMC/tree/master/YogaSMC/SSDTSample">YogaSMC</a> merged together.
-</details>
 
-<details>
-  <summary><b>config.plist</b></summary>
+<h3>config.plist</h3>
   
   - <b>Device Properties</b>
     - (0x0)/(0x2,0x0) -> patches platform-ID and device-ID for WhiskeyLake as suggested in the <a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md">Whatevergreen FAQ</a>; patches connectors as suggested in the Dortania guide; patches DVMT allocation;
@@ -65,16 +68,16 @@ Everything else, including gestures, multitouch, touchscreen, external video out
     - (0x0)/(0x1C,0x6)/(0x0,0x0) -> for BCM94350ZAE <b>with pin 53 masked</b>; change aspm if you don't mask the pin; remove if you use other Wireless Cards;
     - (0x0)/(0x1F,0x3) -> audio
   - <b>Kernel</b>/<b>Quirks</b>:
-    - AppleCpuPmCfgLock / AppleXcpmCfgLock -> Interestingly, system boots even though these two patches are disabled and CFG Lock is enabled. Patching CFGLock (or DVMT), maybe, is possible only with a CH341A + SOIC programmer. Anyway, <a href="https://github.com/digmorepaka/thinkpad-firmware-patches">there isn't any public BIOS patch</a> available for this laptop;
+    - AppleCpuPmCfgLock / AppleXcpmCfgLock -> Interestingly, <a href="https://github.com/simprecicchiani/ThinkPad-T460s-macOS-OpenCore/issues/8">system boots even though these two patches are disabled and CFG Lock is enabled</a>. Patching CFGLock (or DVMT), maybe, is possible only with a <a href="https://github.com/tylernguyen/x1c6-hackintosh/blob/main/docs/BIOS.md#modding-the-bios">CH341A + SOIC programmer</a>. Anyway, <a href="https://github.com/digmorepaka/thinkpad-firmware-patches">there isn't any public BIOS full patch</a> (with advanced menu) available for this laptop</a>;
     - SetApfsTrimTimeout -> probably useful for my ssd that <a href="https://github.com/dortania/bugtracker/issues/192">takes more than 10s</a> to complete trim;
   - <b>NVRAM</b>
     - rtc-blacklist -> for hibernation. You can remove the content of this entry, along with HibernationFixUp and RTCMemoryFixUp kexts, if you don't use hibernation. Consider that hibernation needs CSM Support enabled in BIOS (<a href="https://github.com/tylernguyen/x1c6-hackintosh/issues/44#issuecomment-697270496">technical info</a>);
     - prev-lang:kbd -> change with your language, I'm Italian so I keep it-IT:0;
- </details>
- 
- Battery lasts about 3-4h with a full charge. Undervolting with Voltageshift is a good idea.
- 
-<img src="https://user-images.githubusercontent.com/63928525/128098815-9685a7e8-2d6e-4cb4-830d-faf16e744709.png" align="left"> These three I2C devices under PCI0 should be removed but I haven't found a way to solve this. <a href="https://github.com/VoodooI2C/VoodooI2C/issues/408">More info</a>.
+
+<img src="https://user-images.githubusercontent.com/63928525/128098815-9685a7e8-2d6e-4cb4-830d-faf16e744709.png" align="right"> These three I2C devices under PCI0 should be removed but I haven't found a way to solve this. VoodooI2C is necessary to make the touchscreen work. <a href="https://github.com/VoodooI2C/VoodooI2C/issues/408">More info</a>.
+
+Battery lasts about 3-4h with a full charge, with a 0.75-1.1W idle power consumption. Undervolting with Voltageshift is a good idea.
+
   
   
   

@@ -2,7 +2,7 @@
 This repository contains the files needed to successfully boot macOS on this laptop with Opencore.
 
 <p align="center"><img src="./.github/l390yoga.png" alt="Thinkpad L390 Yoga" width="40%" align="Right"><a href="https://pcsupport.lenovo.com/us/it/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l390-yoga-type-20nt-20nu/downloads/ds505882"><img src="https://img.shields.io/badge/BIOS-1.35-blue"></a> &nbsp;&nbsp;<a href="https://github.com/acidanthera/OpenCorePkg"><img src="https://img.shields.io/badge/OpenCore-0.7.2-blue"></a> &nbsp;&nbsp;<img src="https://img.shields.io/badge/MacOS-12-blue"></p>
-The project is stable. Mac OS 12 works with Windows 11 in dual boot. There are probably things that can be improved, so feel free to open issues or even PRs with suggestions or observations.<br> <b>This is not a support forum</b>, I won't be able to give individual support. I suggest to use the <a href="https://dortania.github.io/OpenCore-Install-Guide/">Dortania Opencore Install Guide</a> to build your EFI folder, then compare with this EFI for the last improvements. 
+The project is stable. Mac OS 12 works with Windows 11 in dual boot. There are probably things that can be improved, so feel free to open issues or even PRs with suggestions or observations.<br> <b>This is not a support forum</b>, I won't be able to give individual support. I suggest to use the <a href="https://dortania.github.io/OpenCore-Install-Guide/">Dortania's Opencore Install Guide</a> to build your EFI folder, then compare with this EFI for the last improvements. 
 
 <h2>Configuration</h2>
 <div align="center">
@@ -72,6 +72,9 @@ Everything else, including gestures, multitouch, touchscreen, external video out
   - <b>Kernel</b>/<b>Quirks</b>:
     - AppleCpuPmCfgLock / AppleXcpmCfgLock -> Interestingly, <a href="https://github.com/simprecicchiani/ThinkPad-T460s-macOS-OpenCore/issues/8">system boots even though these two patches are disabled and CFG Lock is enabled</a>. Patching CFGLock (or DVMT), maybe, is possible only with a <a href="https://github.com/tylernguyen/x1c6-hackintosh/blob/main/docs/BIOS.md#modding-the-bios">CH341A + SOIC programmer</a>. Anyway, <a href="https://github.com/digmorepaka/thinkpad-firmware-patches">there isn't any public BIOS full patch</a> (with advanced menu) available for this laptop</a>;
     - SetApfsTrimTimeout -> probably useful for my ssd that <a href="https://github.com/dortania/bugtracker/issues/192">takes more than 10s</a> to complete trim;
+  - <b>Kernel</b>/<b>Add</b>:
+    - BrcmPatchRAM, BrcmFirmwareData, AirportBrcmFixup are useful for non-native Broadcom network cards, remove if not needed;
+    - BlueToolFixup: <a href="https://github.com/acidanthera/BrcmPatchRAM/pull/12">required for Bluetooth</a> with non-native network cards in Monterey. In Big Sur (and older) replace with BrcmBluetoothInjector.kext; 
   - <b>NVRAM</b>
     - rtc-blacklist -> for hibernation. You can remove the content of this entry, along with HibernationFixUp and RTCMemoryFixUp kexts, if you don't use hibernation;
     - prev-lang:kbd -> change with your language, I'm Italian so I keep it-IT:0;
@@ -80,6 +83,13 @@ Everything else, including gestures, multitouch, touchscreen, external video out
 
 Battery lasts about 3-4h with a full charge, with a 0.75-1.1W idle power consumption. Undervolting with Voltageshift is a good idea.
 
-  
-  
+<h2>Thanks to</h2>
+
+- <a href="https://github.com/acidanthera">acidanthera</a>
+- <a href="https://dortania.github.io/OpenCore-Install-Guide/">Dortania's OpenCore Install Guide</a>
+- zhen-zen for <a href="https://github.com/zhen-zen/YogaSMC">YogaSMC</a>
+- <a href="https://github.com/VoodooI2C/VoodooI2C">VoodooI2C</a> for the touchscreen driver
+- sicreative for <a href="https://github.com/sicreative/VoltageShift">VoltageShift</a>
+- benbender and tylernguyen for their well-documented <a href="https://github.com/benbender/x1c6-hackintosh">thinkpad x1c6 hackintosh project</a>
+- <a href="https://github.com/5T33Z0/OC-Little-Translated">OC-Little-Translated</a>
   

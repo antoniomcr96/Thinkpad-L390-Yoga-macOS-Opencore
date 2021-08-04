@@ -8,9 +8,9 @@
             <array>
                 <dict>
                     <key>Comment</key>
-                    <string>SSDT-AWAC-GPIO-INIT.aml</string>
+                    <string>disables RTC device,  HPET and creates OSDW method</string>
                     <key>Path</key>
-                    <string>SSDT-AWAC-GPIO-INIT.aml</string>
+                    <string>SSDT-AWAC-HPET-OSDW.aml</string>
                     <key>Enabled</key>
                     <true/>
                 </dict>
@@ -40,7 +40,7 @@
                 </dict>
                 <dict>
                     <key>Comment</key>
-                    <string>SSDT-DEVICES.aml</string>
+                    <string>patches ADP1 to allow ACPIACAdapter to attach to the device; injects PWRB, DMAC, MCHC, PPMC,BUS0, PGMM, PMCR, SRAM devices</string>
                     <key>Path</key>
                     <string>SSDT-DEVICES.aml</string>
                     <key>Enabled</key>
@@ -48,7 +48,7 @@
                 </dict>
                 <dict>
                     <key>Comment</key>
-                    <string>SSDT-HWAC.aml</string>
+                    <string>patches the access in the only 16-bit field of EC</string>
                     <key>Path</key>
                     <string>SSDT-HWAC.aml</string>
                     <key>Enabled</key>
@@ -615,7 +615,7 @@
                     <key>MaxKernel</key>
                     <string></string>
                     <key>Enabled</key>
-                    <false/>
+                    <true/>
                     <key>PlistPath</key>
                     <string>Contents/Info.plist</string>
                     <key>MinKernel</key>
@@ -1532,19 +1532,19 @@
                 <key>MaxBIOSVersion</key>
                 <false/>
                 <key>MLB</key>
-                <string>InsertYour</string>
+                <string>InsertYours</string>
                 <key>ProcessorType</key>
                 <integer>0</integer>
                 <key>ROM</key>
-                <data>AAAAAAAAAA==</data>
+                <data>ESIzRFVm</data>
                 <key>SpoofVendor</key>
                 <true/>
                 <key>SystemProductName</key>
                 <string>MacBookPro15,2</string>
                 <key>SystemSerialNumber</key>
-                <string>InsertYour</string>
+                <string>InsertYours</string>
                 <key>SystemUUID</key>
-                <string>InsertYour</string>
+                <string>InsertYours</string>
             </dict>
             <key>UpdateDataHub</key>
             <true/>

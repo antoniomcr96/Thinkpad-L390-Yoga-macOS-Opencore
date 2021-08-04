@@ -48,7 +48,9 @@ Everything else, including gestures, multitouch, touchscreen, external video out
 
 - Disable Secure Boot;
 - Disable VTd;
-- Disable Wake On Lan
+- Disable Wake On Lan;
+- UEFI/Legacy Boot: UEFI Only;
+- CSM Support: it should be disabled, however enable the CSM support avoids the black screen after hibernation (<a href="https://github.com/tylernguyen/x1c6-hackintosh/issues/44#issuecomment-697270496">technical info</a>). There is also an alternative patch at the end of config.plist, but for me it doesn't work.
 
 <h3>SSDTs</h3>
   
@@ -71,7 +73,7 @@ Everything else, including gestures, multitouch, touchscreen, external video out
     - AppleCpuPmCfgLock / AppleXcpmCfgLock -> Interestingly, <a href="https://github.com/simprecicchiani/ThinkPad-T460s-macOS-OpenCore/issues/8">system boots even though these two patches are disabled and CFG Lock is enabled</a>. Patching CFGLock (or DVMT), maybe, is possible only with a <a href="https://github.com/tylernguyen/x1c6-hackintosh/blob/main/docs/BIOS.md#modding-the-bios">CH341A + SOIC programmer</a>. Anyway, <a href="https://github.com/digmorepaka/thinkpad-firmware-patches">there isn't any public BIOS full patch</a> (with advanced menu) available for this laptop</a>;
     - SetApfsTrimTimeout -> probably useful for my ssd that <a href="https://github.com/dortania/bugtracker/issues/192">takes more than 10s</a> to complete trim;
   - <b>NVRAM</b>
-    - rtc-blacklist -> for hibernation. You can remove the content of this entry, along with HibernationFixUp and RTCMemoryFixUp kexts, if you don't use hibernation. Consider that hibernation needs CSM Support enabled in BIOS (<a href="https://github.com/tylernguyen/x1c6-hackintosh/issues/44#issuecomment-697270496">technical info</a>);
+    - rtc-blacklist -> for hibernation. You can remove the content of this entry, along with HibernationFixUp and RTCMemoryFixUp kexts, if you don't use hibernation;
     - prev-lang:kbd -> change with your language, I'm Italian so I keep it-IT:0;
 
 <img src="https://user-images.githubusercontent.com/63928525/128098815-9685a7e8-2d6e-4cb4-830d-faf16e744709.png" align="right"> These three I2C devices under PCI0 should be removed but I haven't found a way to solve this. VoodooI2C is necessary to make the touchscreen work. <a href="https://github.com/VoodooI2C/VoodooI2C/issues/408">More info</a>.

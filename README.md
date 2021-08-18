@@ -92,4 +92,8 @@ Battery lasts about 3-4h with a full charge, with a 0.75-1.1W idle power consump
 - sicreative for <a href="https://github.com/sicreative/VoltageShift">VoltageShift</a>
 - benbender and tylernguyen for their well-documented <a href="https://github.com/benbender/x1c6-hackintosh">thinkpad x1c6 hackintosh project</a>
 - <a href="https://github.com/5T33Z0/OC-Little-Translated">OC-Little-Translated</a>
+
+<h2>Benchmark</h2>
+<p align="center"><img src="./.github/Benchmark.png"></p>
+Compare with <a href="https://browser.geekbench.com/v5/cpu/search?utf8=✓&q=MacBook+Pro+2018+i5">these</a>.
   

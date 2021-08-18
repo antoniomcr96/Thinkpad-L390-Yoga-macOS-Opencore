@@ -160,7 +160,7 @@
                     <key>Mask</key>
                     <data></data>
                     <key>OemTableId</key>
-                    <data></data>
+                    <data>AAAAAAAAAAA=</data>
                     <key>Replace</key>
                     <data>WEwxNw==</data>
                     <key>ReplaceMask</key>
@@ -190,7 +190,7 @@
                     <key>Mask</key>
                     <data></data>
                     <key>OemTableId</key>
-                    <data></data>
+                    <data>AAAAAAAAAAA=</data>
                     <key>Replace</key>
                     <data>cAptYKRIUFJX</data>
                     <key>ReplaceMask</key>
@@ -220,7 +220,7 @@
                     <key>Mask</key>
                     <data></data>
                     <key>OemTableId</key>
-                    <data></data>
+                    <data>AAAAAAAAAAA=</data>
                     <key>Replace</key>
                     <data>WFExQw==</data>
                     <key>ReplaceMask</key>
@@ -250,7 +250,7 @@
                     <key>Mask</key>
                     <data></data>
                     <key>OemTableId</key>
-                    <data></data>
+                    <data>AAAAAAAAAAA=</data>
                     <key>Replace</key>
                     <data>WFExRA==</data>
                     <key>ReplaceMask</key>
@@ -280,7 +280,7 @@
                     <key>Mask</key>
                     <data></data>
                     <key>OemTableId</key>
-                    <data></data>
+                    <data>AAAAAAAAAAA=</data>
                     <key>Replace</key>
                     <data>WFE1Mg==</data>
                     <key>ReplaceMask</key>
@@ -374,7 +374,7 @@
                 <key>EnableSafeModeSlide</key>
                 <false/>
                 <key>EnableWriteUnprotector</key>
-                <true/>
+                <false/>
                 <key>ForceBooterSignature</key>
                 <false/>
                 <key>ForceExitBootServices</key>
@@ -390,13 +390,13 @@
                 <key>ProvideMaxSlide</key>
                 <integer>0</integer>
                 <key>RebuildAppleMemoryMap</key>
-                <false/>
+                <true/>
                 <key>SetupVirtualMap</key>
                 <true/>
                 <key>SignalAppleOS</key>
                 <false/>
                 <key>SyncRuntimePermissions</key>
-                <false/>
+                <true/>
             </dict>
         </dict>
         <key>DeviceProperties</key>
@@ -409,6 +409,12 @@
                     <data>CQClPg==</data>
                     <key>device-id</key>
                     <data>pT4AAA==</data>
+                    <key>framebuffer-fbmem</key>
+                    <data>AACQAA==</data>
+                    <key>framebuffer-patch-enable</key>
+                    <data>AQAAAA==</data>
+                    <key>framebuffer-stolenmem</key>
+                    <data>AAAwAQ==</data>
                     <key>framebuffer-memorycount</key>
                     <data>AgAAAA==</data>
                     <key>framebuffer-pipecount</key>
@@ -423,14 +429,6 @@
                     <data>AgAAAA==</data>
                     <key>framebuffer-con1-type</key>
                     <data>AAgAAA==</data>
-                    <key>framebuffer-fbmem</key>
-                    <data>AACQAA==</data>
-                    <key>framebuffer-patch-enable</key>
-                    <data>AQAAAA==</data>
-                    <key>framebuffer-stolenmem</key>
-                    <data>AAAwAQ==</data>
-                    <key>enable-hdmi-dividers-fix</key>
-                    <data>AQAAAA==</data>
                     <key>force-online</key>
                     <data>AQAAAA==</data>
                 </dict>
@@ -929,7 +927,7 @@
                     <key>Comment</key>
                     <string>For support of Hibernation Mode 25</string>
                     <key>Enabled</key>
-                    <true/>
+                    <false/>
                     <key>ExecutablePath</key>
                     <string>Contents/MacOS/HibernationFixup</string>
                     <key>MaxKernel</key>
@@ -1264,7 +1262,7 @@
                 <key>ConsoleAttributes</key>
                 <integer>0</integer>
                 <key>HibernateMode</key>
-                <string>NVRAM</string>
+                <string>Auto</string>
                 <key>HideAuxiliary</key>
                 <false/>
                 <key>LauncherOption</key>
@@ -1299,7 +1297,7 @@
                 <key>DisplayDelay</key>
                 <integer>0</integer>
                 <key>DisplayLevel</key>
-                <integer>2147483650</integer>
+                <integer>0</integer>
                 <key>SerialInit</key>
                 <false/>
                 <key>SysReport</key>
@@ -1502,19 +1500,19 @@
                 <key>MaxBIOSVersion</key>
                 <false/>
                 <key>MLB</key>
-                <string>InsertYours</string>
+                <string>Insert Yours</string>
                 <key>ProcessorType</key>
                 <integer>0</integer>
                 <key>ROM</key>
-                <data>ESIzRFVm</data>
+                <data>AAAAAAAA</data>
                 <key>SpoofVendor</key>
                 <true/>
                 <key>SystemProductName</key>
                 <string>MacBookPro15,2</string>
                 <key>SystemSerialNumber</key>
-                <string>InsertYours</string>
+                <string>Insert Yours</string>
                 <key>SystemUUID</key>
-                <string>InsertYours</string>
+                <string>Insert Yours</string>
             </dict>
             <key>UpdateDataHub</key>
             <true/>

@@ -35,7 +35,6 @@ The project is stable. Mac OS 12 works with Windows 11 in dual boot. There are p
 
 - Trackpoint scrolls in the wrong direction (VoodooPS2Controller bug, reported here: <a href="https://github.com/acidanthera/bugtracker/issues/1226">issue 1226</a>);
 - Enabling Bootchime breaks Windows audio (more info: <a href="https://github.com/acidanthera/bugtracker/issues/740#issuecomment-860667531">issue 740</a>);
-- Sometimes the backlight of the display doesn't work on boot (solution: close the LID, wait a few seconds, open the LID; any suggestion is appreciated);
 - SD card reader: there are probably workarounds, with projects that look promising, such as: <a href="https://github.com/0xFireWolf/RealtekCardReader">this driver</a> (I'm not interested in this device, so I disabled it in BIOS to save power);
 - Personal Hotspot and Unlock with Apple Watch don't work with BCM94350ZAE, you need a native Apple Card. The only native card that fits in this laptop is the BCM94360NG;
 - Some features of YogaSMC kext: for info, follow <a href="https://github.com/zhen-zen/YogaSMC/issues/68#">this issue</a> and feel free to contribute;
@@ -59,7 +58,7 @@ Everything else, including gestures, multitouch, touchscreen, external video out
   - <b>SSDT-GPRW</b>: personal patch to avoid instant wake after sleep with certain usb devices plugged. It patches _PRW methods and must be associated with the relative ACPI patch in config.plist;
   - <b>SSDT-HWAC</b>: patches the access in the only 16-bit field of EC;
   - <b>SSDT-KEYS</b>: makes the brightness keys work (alternative: <a href="https://github.com/acidanthera/BrightnessKeys">Brightness Keys kext</a>) and patches wrong keys for VoodooPS2Controller;
-  - <b>SSDT-PNLF</b>: personal version of the cross-platform <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/Source/SSDT-PNLF.dsl">SSDT</a>, only for Coffee Lake;
+  - <b>SSDT-PNLF</b>: from the cross-platform <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/Source/SSDT-PNLF.dsl">SSDT</a>, only for Coffee Lake;
   - <b>SSDT-YogaSMC</b>: useful SSDTs from <a href="https://github.com/zhen-zen/YogaSMC/tree/master/YogaSMC/SSDTSample">YogaSMC</a> merged together.
 
 <h3>config.plist</h3>

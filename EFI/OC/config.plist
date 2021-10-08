@@ -437,6 +437,8 @@
                     <data>BQAAAA==</data>
                     <key>backlight-smoother-steps</key>
                     <data>FAAAAA==</data>
+                    <key>enable-backlight-registers-fix</key>
+                    <data>AQAAAA==</data>
                 </dict>
                 <key>PciRoot(0x0)/Pci(0x12,0x0)</key>
                 <dict>
@@ -582,24 +584,6 @@
                     <string>Any</string>
                     <key>BundlePath</key>
                     <string>WhateverGreen.kext</string>
-                </dict>
-                <dict>
-                    <key>Comment</key>
-                    <string></string>
-                    <key>MaxKernel</key>
-                    <string></string>
-                    <key>Enabled</key>
-                    <false/>
-                    <key>PlistPath</key>
-                    <string>Contents/Info.plist</string>
-                    <key>MinKernel</key>
-                    <string></string>
-                    <key>ExecutablePath</key>
-                    <string>Contents/MacOS/VoltageShift</string>
-                    <key>Arch</key>
-                    <string>Any</string>
-                    <key>BundlePath</key>
-                    <string>VoltageShift.kext</string>
                 </dict>
                 <dict>
                     <key>Comment</key>
@@ -933,7 +917,7 @@
                     <key>Comment</key>
                     <string>For support of Hibernation Mode 25</string>
                     <key>Enabled</key>
-                    <false/>
+                    <true/>
                     <key>ExecutablePath</key>
                     <string>Contents/MacOS/HibernationFixup</string>
                     <key>MaxKernel</key>
@@ -988,6 +972,42 @@
                     <true/>
                     <key>ExecutablePath</key>
                     <string>Contents/MacOS/AirportBrcmFixup</string>
+                    <key>MaxKernel</key>
+                    <string></string>
+                    <key>MinKernel</key>
+                    <string></string>
+                    <key>Arch</key>
+                    <string>Any</string>
+                    <key>PlistPath</key>
+                    <string>Contents/Info.plist</string>
+                </dict>
+                <dict>
+                    <key>BundlePath</key>
+                    <string>RealtekCardReader.kext</string>
+                    <key>Comment</key>
+                    <string></string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>ExecutablePath</key>
+                    <string>Contents/MacOS/RealtekCardReader</string>
+                    <key>MaxKernel</key>
+                    <string></string>
+                    <key>MinKernel</key>
+                    <string></string>
+                    <key>Arch</key>
+                    <string>Any</string>
+                    <key>PlistPath</key>
+                    <string>Contents/Info.plist</string>
+                </dict>
+                <dict>
+                    <key>BundlePath</key>
+                    <string>RealtekCardReaderFriend.kext</string>
+                    <key>Comment</key>
+                    <string></string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>ExecutablePath</key>
+                    <string>Contents/MacOS/RealtekCardReaderFriend</string>
                     <key>MaxKernel</key>
                     <string></string>
                     <key>MinKernel</key>
@@ -1268,7 +1288,7 @@
                 <key>ConsoleAttributes</key>
                 <integer>0</integer>
                 <key>HibernateMode</key>
-                <string>Auto</string>
+                <string>NVRAM</string>
                 <key>HideAuxiliary</key>
                 <false/>
                 <key>LauncherOption</key>
@@ -1440,22 +1460,24 @@
                     <key>ForceDisplayRotationInEFI</key>
                     <integer>0</integer>
                 </dict>
+                <key>E09B9297-7928-4440-9AAB-D1F8536FBF0A</key>
+                <dict>
+                    <key>hbfx-ahbm</key>
+                    <integer>1445</integer>
+                    <key>hbfx-patch-pci</key>
+                    <string>IGPU,IMEI</string>
+                </dict>
             </dict>
             <key>Delete</key>
             <dict>
-                <key>4D1EDE05-38C7-4A6A-9CC6-4BCCA8B38C14</key>
-                <array>
-                    <string>UIScale</string>
-                    <string>DefaultBackgroundColor</string>
-                </array>
-                <key>4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102</key>
-                <array>
-                    <string>rtc-blacklist</string>
-                </array>
                 <key>7C436110-AB2A-4BBB-A880-FE41995C9F82</key>
                 <array>
                     <string>boot-args</string>
-                    <string>ForceDisplayRotationInEFI</string>
+                </array>
+                <key>E09B9297-7928-4440-9AAB-D1F8536FBF0A</key>
+                <array>
+                    <string>hbfx-ahbm</string>
+                    <string>hbfx-patch-pci</string>
                 </array>
             </dict>
             <key>LegacyEnable</key>
@@ -1506,19 +1528,19 @@
                 <key>MaxBIOSVersion</key>
                 <false/>
                 <key>MLB</key>
-                <string>Insert Yours</string>
+                <string>InsertYours</string>
                 <key>ProcessorType</key>
                 <integer>0</integer>
                 <key>ROM</key>
-                <data>AAAAAAA=</data>
+                <data>ESIzRFVm</data>
                 <key>SpoofVendor</key>
                 <true/>
                 <key>SystemProductName</key>
                 <string>MacBookPro15,2</string>
                 <key>SystemSerialNumber</key>
-                <string>Insert Yours</string>
+                <string>InsertYours</string>
                 <key>SystemUUID</key>
-                <string>Insert Yours</string>
+                <string>InsertYours</string>
             </dict>
             <key>UpdateDataHub</key>
             <true/>
@@ -1597,6 +1619,8 @@
                     <true/>
                     <key>Arguments</key>
                     <string></string>
+                    <key>Comment</key>
+                    <string></string>
                 </dict>
                 <dict>
                     <key>Path</key>
@@ -1605,6 +1629,8 @@
                     <true/>
                     <key>Arguments</key>
                     <string></string>
+                    <key>Comment</key>
+                    <string></string>
                 </dict>
                 <dict>
                     <key>Path</key>
@@ -1612,6 +1638,8 @@
                     <key>Enabled</key>
                     <true/>
                     <key>Arguments</key>
+                    <string></string>
+                    <key>Comment</key>
                     <string></string>
                 </dict>
             </array>
@@ -1749,7 +1777,7 @@
                     <key>Comment</key>
                     <string>Fix black screen on wake from hibernation for Lenovo Thinkpad T480/T490/X1C6/?</string>
                     <key>Enabled</key>
-                    <false/>
+                    <true/>
                     <key>Size</key>
                     <integer>4096</integer>
                     <key>Type</key>

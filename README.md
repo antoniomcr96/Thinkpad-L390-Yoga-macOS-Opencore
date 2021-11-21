@@ -1,7 +1,7 @@
 # Thinkpad-L390-Yoga-macOS-Opencore
 This repository contains the files needed to successfully boot macOS on this laptop with Opencore.
 
-<p align="center"><img src="./.github/l390yoga.png" alt="Thinkpad L390 Yoga" width="40%" align="Right"><a href="https://pcsupport.lenovo.com/us/it/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l390-yoga-type-20nt-20nu/downloads/ds505882"><img src="https://img.shields.io/badge/BIOS-1.35-blue"></a> &nbsp;&nbsp;<a href="https://github.com/acidanthera/OpenCorePkg"><img src="https://img.shields.io/badge/OpenCore-0.7.4-blue"></a> &nbsp;&nbsp;<img src="https://img.shields.io/badge/MacOS-12-blue"></p>
+<p align="center"><img src="./.github/l390yoga.png" alt="Thinkpad L390 Yoga" width="40%" align="Right"><a href="https://pcsupport.lenovo.com/us/it/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l390-yoga-type-20nt-20nu/downloads/ds505882"><img src="https://img.shields.io/badge/BIOS-1.35-blue"></a> &nbsp;&nbsp;<a href="https://github.com/acidanthera/OpenCorePkg"><img src="https://img.shields.io/badge/OpenCore-0.7.5-blue"></a> &nbsp;&nbsp;<img src="https://img.shields.io/badge/MacOS-12-blue"></p>
 The project is stable. Mac OS 12 works with Windows 11 in dual boot. There are probably things that can be improved, so feel free to open issues or even PRs with suggestions or observations.<br> <b>This is not a support forum</b>, I won't be able to give individual support. I suggest to use the <a href="https://dortania.github.io/OpenCore-Install-Guide/">Dortania's Opencore Install Guide</a> to build your EFI folder, then compare with this EFI for the last improvements. 
 
 <h2>Configuration</h2>
@@ -33,13 +33,14 @@ The project is stable. Mac OS 12 works with Windows 11 in dual boot. There are p
 
 <h3>What doesn't work and could be solved</h3>
 
+- Realtek Card Reader: it can work with <a href="https://github.com/0xFireWolf/RealtekCardReader">this driver</a> by 0xFireWolf. However, I have noticed an increase in power consumption (about 0.5w on idle) with the card reader enabled and the kext, so I prefer to disable it;
 - Trackpoint scrolls in the wrong direction (VoodooPS2Controller bug, reported here: <a href="https://github.com/acidanthera/bugtracker/issues/1226">issue 1226</a>);
 - Enabling Bootchime breaks Windows audio (more info: <a href="https://github.com/acidanthera/bugtracker/issues/740#issuecomment-860667531">issue 740</a>);
 - Personal Hotspot and Unlock with Apple Watch don't work with BCM94350ZAE, you need a native Apple Card. The only native card that fits in this laptop is the BCM94360NG;
 - Some features of YogaSMC kext: for info, follow <a href="https://github.com/zhen-zen/YogaSMC/issues/68#">this issue</a> and feel free to contribute;
 
 <h3>What works</h3>
-Everything else, including gestures, multitouch, touchscreen, external video output, SD Card Reader, EC keys, sleep, hibernation, Handoff, Airdrop, ...
+Everything else, including gestures, multitouch, touchscreen, external video output, EC keys, sleep, hibernation, Handoff, Airdrop, ...
 
 <h2>Useful informations</h2>
 <h3>BIOS</h3>
@@ -80,7 +81,7 @@ Everything else, including gestures, multitouch, touchscreen, external video out
 
 <img src="https://user-images.githubusercontent.com/63928525/128098815-9685a7e8-2d6e-4cb4-830d-faf16e744709.png" align="right"> These three I2C devices under PCI0 should be removed but I haven't found a way to solve this. VoodooI2C is necessary to make the touchscreen work. <a href="https://github.com/VoodooI2C/VoodooI2C/issues/408">More info</a>.
 
-Battery lasts about 3-4h with a full charge, with a 0.75-1.1W idle power consumption. Undervolting with Voltageshift is a good idea.
+Battery lasts about 3-4h with a full charge, with a 0.8-1.1W idle power consumption. Undervolting with Voltageshift is a good idea.
 
 <h2>Thanks to</h2>
 
@@ -91,7 +92,6 @@ Battery lasts about 3-4h with a full charge, with a 0.75-1.1W idle power consump
 - sicreative for <a href="https://github.com/sicreative/VoltageShift">VoltageShift</a>
 - benbender and tylernguyen for their well-documented <a href="https://github.com/benbender/x1c6-hackintosh">thinkpad x1c6 hackintosh project</a>
 - <a href="https://github.com/5T33Z0/OC-Little-Translated">OC-Little-Translated</a>
-- 0xFireWolf for <a href="https://github.com/0xFireWolf/RealtekCardReader">RealtekCardReader</a>
 
 <h2>Benchmark</h2>
 <p align="center"><img src="./.github/Benchmark.png"></p>

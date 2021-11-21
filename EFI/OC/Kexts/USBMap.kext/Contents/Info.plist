@@ -22,7 +22,7 @@
         <string>1.0</string>
         <key>IOKitPersonalities</key>
         <dict>
-            <key>MacBookPro15,2-XHC</key>
+            <key>MacBookPro15,4-XHC</key>
             <dict>
                 <key>CFBundleIdentifier</key>
                 <string>com.apple.driver.AppleUSBMergeNub</string>
@@ -43,7 +43,7 @@
                         <key>HS01</key>
                         <dict>
                             <key>Comment</key>
-                            <string>USBc front left</string>
+                            <string>Middle Left USBc</string>
                             <key>UsbConnector</key>
                             <integer>9</integer>
                             <key>port</key>
@@ -52,7 +52,7 @@
                         <key>HS02</key>
                         <dict>
                             <key>Comment</key>
-                            <string>USBc rear left</string>
+                            <string>Rear Left USBc</string>
                             <key>UsbConnector</key>
                             <integer>9</integer>
                             <key>port</key>
@@ -61,7 +61,7 @@
                         <key>HS03</key>
                         <dict>
                             <key>Comment</key>
-                            <string>front left 2.0</string>
+                            <string>Front Left USB2</string>
                             <key>UsbConnector</key>
                             <integer>0</integer>
                             <key>port</key>
@@ -70,7 +70,7 @@
                         <key>HS04</key>
                         <dict>
                             <key>Comment</key>
-                            <string>Right 2.0</string>
+                            <string>Right USB2</string>
                             <key>UsbConnector</key>
                             <integer>0</integer>
                             <key>port</key>
@@ -78,6 +78,8 @@
                         </dict>
                         <key>HS05</key>
                         <dict>
+                            <key>Comment</key>
+                            <string>Camera</string>
                             <key>UsbConnector</key>
                             <integer>255</integer>
                             <key>port</key>
@@ -85,6 +87,8 @@
                         </dict>
                         <key>HS06</key>
                         <dict>
+                            <key>Comment</key>
+                            <string>Touchscreen</string>
                             <key>UsbConnector</key>
                             <integer>255</integer>
                             <key>port</key>
@@ -92,6 +96,8 @@
                         </dict>
                         <key>HS10</key>
                         <dict>
+                            <key>Comment</key>
+                            <string>Bluetooth</string>
                             <key>UsbConnector</key>
                             <integer>255</integer>
                             <key>port</key>
@@ -100,7 +106,7 @@
                         <key>SS01</key>
                         <dict>
                             <key>Comment</key>
-                            <string>USBc front left</string>
+                            <string>Middle Left USBc</string>
                             <key>UsbConnector</key>
                             <integer>9</integer>
                             <key>port</key>
@@ -109,7 +115,7 @@
                         <key>SS02</key>
                         <dict>
                             <key>Comment</key>
-                            <string>USBc rear left</string>
+                            <string>Rear Left USBc</string>
                             <key>UsbConnector</key>
                             <integer>9</integer>
                             <key>port</key>
@@ -118,7 +124,7 @@
                         <key>SS03</key>
                         <dict>
                             <key>Comment</key>
-                            <string>front left</string>
+                            <string>Front Left USB3</string>
                             <key>UsbConnector</key>
                             <integer>3</integer>
                             <key>port</key>
@@ -127,7 +133,7 @@
                         <key>SS04</key>
                         <dict>
                             <key>Comment</key>
-                            <string>Right</string>
+                            <string>Right USB3</string>
                             <key>UsbConnector</key>
                             <integer>3</integer>
                             <key>port</key>
@@ -136,7 +142,7 @@
                     </dict>
                 </dict>
                 <key>model</key>
-                <string>MacBookPro15,2</string>
+                <string>MacBookPro15,4</string>
             </dict>
         </dict>
         <key>OSBundleRequired</key>

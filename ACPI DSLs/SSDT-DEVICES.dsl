@@ -38,25 +38,27 @@ DefinitionBlock ("", "SSDT", 2, "THKP", "DEVICES", 0x00001000)
         Name (_HID, EisaId ("PNP0C0C"))  
         Method (_DSM, 4, NotSerialized) 
         {
-                If (Arg0 == ToUUID ("a0b5b7c6-1318-441c-b0c9-fe695eaf949b"))
+                // The following lines, from MBP15,1 DSDT, change the behavior of the Power Button to immediately lock the computer.
+                // Without, long press the Power Button shows the shutdown menu. 
+                /*If (Arg0 == ToUUID ("a0b5b7c6-1318-441c-b0c9-fe695eaf949b"))
                 {
                     Local0 = Package (0x04)
                         {
                             "power-button-usage", 
                             Buffer (0x08)
                             {
-                                 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   /* @....... */
+                                 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00  
                             }, 
 
                             "power-button-usagepage", 
                             Buffer (0x08)
                             {
-                                 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   /* ........ */
+                                 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00  
                             }
                         }
                     DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
                     Return (Local0)
-                }
+                }*/
                 Return (Zero)
         }
 

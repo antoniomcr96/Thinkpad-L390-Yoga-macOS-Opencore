@@ -6,7 +6,7 @@ DefinitionBlock ("", "SSDT", 2, "THKP", "INIT", 0x00000000)
 
     Scope (\)
     {
-        // Method that checks if OSI is Darwing to apply certain patches
+        // Method that checks if OSI is Darwin to apply (or not) certain patches
         Method (OSDW, 0, NotSerialized)
         {
             If (_OSI ("Darwin"))
@@ -20,7 +20,7 @@ DefinitionBlock ("", "SSDT", 2, "THKP", "INIT", 0x00000000)
         If (OSDW ())
         {
             // Disable RTC Device - Necessary to boot
-            Debug = "RTC Device - AWAC"
+            Debug = "Disable RTC Device - AWAC"
             STAS = One
             
             // Disable HPET. Shouldn't be necessary in modern systems and it is disabled in genuine MacBooks

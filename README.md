@@ -65,7 +65,7 @@ Everything else, including gestures, multitouch, touchscreen, bootchime (thanks 
 <h3>config.plist</h3>
 
   - <b>Device Properties</b>
-    - (0x0)/(0x2,0x0) -> patches platform-ID and device-ID for WhiskeyLake as suggested in the <a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md">Whatevergreen FAQ</a>; patches connectors as suggested in the Dortania guide; patches DVMT allocation;
+    - (0x0)/(0x2,0x0) -> patches platform-ID (0x3E9B0009) and device-ID (0x3E9B) for WhiskeyLake UHD620 (faked as a UHD630). <a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md">Whatevergreen FAQ</a> suggests to use other values, however I encounterd problems with the suggested values (black screen on boot, blackscreen after wake with backlight on...); patches connectors as suggested in the Dortania guide; patches DVMT allocation; <i>force-online</i> is useful if you use external monitor, otherwise you can remove it; 
     - (0x0)/(0x12,0x0) -> allows AppleIntelPCHPMC to attach to PMCR (pci8086,9df9), not sure if useful;
     - (0x0)/(0x1C,0x6)/(0x0,0x0) -> for BCM94350ZAE <b>with pin 53 masked</b>; change aspm if you don't mask the pin; remove if you use other Wireless Cards;
     - (0x0)/(0x1F,0x3) -> audio

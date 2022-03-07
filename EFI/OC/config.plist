@@ -16,17 +16,25 @@
                 </dict>
                 <dict>
                     <key>Comment</key>
-                    <string>SSDT-EC-USBX-LAPTOP.aml</string>
+                    <string>SSDT-PLUG.aml</string>
                     <key>Path</key>
-                    <string>SSDT-EC-USBX-LAPTOP.aml</string>
+                    <string>SSDT-PLUG.aml</string>
                     <key>Enabled</key>
                     <true/>
                 </dict>
                 <dict>
                     <key>Comment</key>
-                    <string>SSDT-PLUG.aml</string>
+                    <string>SSDT-GPRW.aml</string>
                     <key>Path</key>
-                    <string>SSDT-PLUG.aml</string>
+                    <string>SSDT-GPRW.aml</string>
+                    <key>Enabled</key>
+                    <true/>
+                </dict>
+                <dict>
+                    <key>Comment</key>
+                    <string>SSDT-EC-USBX-LAPTOP.aml</string>
+                    <key>Path</key>
+                    <string>SSDT-EC-USBX-LAPTOP.aml</string>
                     <key>Enabled</key>
                     <true/>
                 </dict>
@@ -59,14 +67,6 @@
                     <string>SSDT-KEYS.aml</string>
                     <key>Path</key>
                     <string>SSDT-KEYS.aml</string>
-                    <key>Enabled</key>
-                    <true/>
-                </dict>
-                <dict>
-                    <key>Comment</key>
-                    <string>SSDT-GPRW.aml</string>
-                    <key>Path</key>
-                    <string>SSDT-GPRW.aml</string>
                     <key>Enabled</key>
                     <true/>
                 </dict>
@@ -149,7 +149,7 @@
                     <key>BaseSkip</key>
                     <integer>0</integer>
                     <key>Comment</key>
-                    <string>Change GPRW (0x6d,  ) to Return (HPRW) (Goes with SSDT-GPRW)</string>
+                    <string>Change GPRW (0x6d,  0x04) to Return (HPRW) (Goes with SSDT-GPRW)</string>
                     <key>Count</key>
                     <integer>0</integer>
                     <key>Enabled</key>
@@ -163,7 +163,7 @@
                     <key>OemTableId</key>
                     <data>AAAAAAAAAAA=</data>
                     <key>Replace</key>
-                    <data>cAptYKRIUFJX</data>
+                    <data>pEhQUlejo6Oj</data>
                     <key>ReplaceMask</key>
                     <data></data>
                     <key>Skip</key>
@@ -390,10 +390,8 @@
                     <data>AAAwAQ==</data>
                     <key>framebuffer-con2-enable</key>
                     <data>AQAAAA==</data>
-                    <key>framebuffer-con2-busid</key>
-                    <data>AgAAAA==</data>
-                    <key>framebuffer-con2-type</key>
-                    <data>AAgAAA==</data>
+                    <key>framebuffer-con2-alldata</key>
+                    <data>AgIKAAAIAADHAQAA</data>
                     <key>enable-backlight-smoother</key>
                     <data>AQAAAA==</data>
                     <key>backlight-smoother-interval</key>
@@ -942,6 +940,8 @@
                     <string></string>
                     <key>Arch</key>
                     <string>Any</string>
+                    <key>Strategy</key>
+                    <string>Disable</string>
                 </dict>
             </array>
             <key>Emulate</key>
@@ -1087,7 +1087,7 @@
                 <key>ProvideCurrentCpuInfo</key>
                 <false/>
                 <key>SetApfsTrimTimeout</key>
-                <integer>4294967295</integer>
+                <integer>-1</integer>
                 <key>ThirdPartyDrives</key>
                 <false/>
                 <key>XhciPortLimit</key>
@@ -1137,7 +1137,7 @@
                 <key>ConsoleAttributes</key>
                 <integer>0</integer>
                 <key>HibernateMode</key>
-                <string>NVRAM</string>
+                <string>Auto</string>
                 <key>HideAuxiliary</key>
                 <false/>
                 <key>LauncherOption</key>
@@ -1173,6 +1173,8 @@
                 <integer>0</integer>
                 <key>DisplayLevel</key>
                 <integer>2147483714</integer>
+                <key>LogModules</key>
+                <string>*</string>
                 <key>SerialInit</key>
                 <false/>
                 <key>SysReport</key>
@@ -1311,8 +1313,6 @@
                 <dict>
                     <key>hbfx-ahbm</key>
                     <integer>1445</integer>
-                    <key>hbfx-disable-patch-pci</key>
-                    <true/>
                 </dict>
             </dict>
             <key>Delete</key>
@@ -1363,26 +1363,26 @@
             <false/>
             <key>Generic</key>
             <dict>
-              <key>AdviseFeatures</key>
-              <false/>
-              <key>SystemMemoryStatus</key>
-              <string>Auto</string>
-              <key>MaxBIOSVersion</key>
-              <false/>
-              <key>MLB</key>
-              <string>InsertYours</string>
-              <key>ProcessorType</key>
-              <integer>0</integer>
-              <key>ROM</key>
-              <data>ESIzRFVm</data>
-              <key>SpoofVendor</key>
-              <true/>
-              <key>SystemProductName</key>
-              <string>MacBookPro15,4</string>
-              <key>SystemSerialNumber</key>
-              <string>InsertYours</string>
-              <key>SystemUUID</key>
-              <string>InsertYours</string>
+                <key>AdviseFeatures</key>
+                <false/>
+                <key>SystemMemoryStatus</key>
+                <string>Auto</string>
+                <key>MaxBIOSVersion</key>
+                <false/>
+                <key>MLB</key>
+                <string>InsertYours</string>
+                <key>ProcessorType</key>
+                <integer>0</integer>
+                <key>ROM</key>
+                <data>ESIzRFVm</data>
+                <key>SpoofVendor</key>
+                <true/>
+                <key>SystemProductName</key>
+                <string>MacBookPro15,4</string>
+                <key>SystemSerialNumber</key>
+                <string>InsertYours</string>
+                <key>SystemUUID</key>
+                <string>InsertYours</string>
             </dict>
             <key>UpdateDataHub</key>
             <true/>
@@ -1474,7 +1474,7 @@
                     <key>Enabled</key>
                     <true/>
                     <key>Arguments</key>
-                    <string></string>
+                    <string>--restore-nosnoop</string>
                     <key>Comment</key>
                     <string></string>
                 </dict>

@@ -47,7 +47,7 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "SsdtEC", 0x00001000)
             Name (_HID, "ACID0001")  // _HID: Hardware ID
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If (_OSI ("Darwin"))
+                If (OSDW ())
                 {
                     Return (0x0F)
                 }

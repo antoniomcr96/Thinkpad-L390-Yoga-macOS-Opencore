@@ -17,12 +17,7 @@ The project is stable. Mac OS 12 works with Windows 11 in dual boot. There are p
 | Sound Card          | Realtek ALC257 @ layout-id 96                             |
 | Wireless/BT Card       | BCM94350ZAE (Lenovo FRU 00JT494)           |
 
-
 <img src="./.github/info.png"></div>
-- <b>If your laptop has a Samsung PM981 NVMe SSD you have to buy another one</b>, because that drive <a href="https://github.com/tylernguyen/x1c6-hackintosh/issues/43">doesn't work with macOS</a> at all.
-- The original network card (Intel wireless 9560NGW) works with <a href="https://github.com/OpenIntelWireless">OpenIntelWireless</a>. Anyway, if you're interested in features such as Airdrop or Handoff, a supported Broadcom card is a better choice. Check <a href="https://dortania.github.io/Wireless-Buyers-Guide/types-of-wireless-card/m2.html">Dortania Wireless Buyers Guide</a>.
-  - I chose BCM94350ZAE due to the high cost of BCM94360NG. This card works well with AirDrop, Handoff and Universal Clipboard support. However, Personal Hotspot and Apple Watch Unlock don't work. The guide suggests to set aspm to 0 because the BCM94350ZAE chipset doesn't support power management correctly in macOS. However, I think that it is probably better to mask pin 53 (more info: <a href="https://github.com/acidanthera/bugtracker/issues/794">here</a> and <a href="https://github.com/acidanthera/bugtracker/issues/1646#issuecomment-877663608">here</a>). If you can find and buy it, a BCM94360NG is probably better. Keep in mind that bigger cards such as BCM94350CS2 don't fit this laptop.
-
 <h2>Status</h2>
 <h3>What works</h3>
 Almost everything, including gestures, multitouch, touchscreen, bootchime (thanks @mikebeaton), external video output, EC keys, sleep, hibernation, Handoff, Airdrop, ...
@@ -74,9 +69,21 @@ Almost everything, including gestures, multitouch, touchscreen, bootchime (thank
     - hbfx-ahbm = 1445 -> Auto-hibernation. The value means 1: Enable; +4: When External Power is disconnected; +32: When Battery At Critical Level; +128: DisableStimulusDarkWakeActivityTickle, not sure if useful; +256+1024 = 5%;
     - prev-lang:kbd -> change with your language, I'm Italian so I keep it-IT:0;
 
-<img src="https://user-images.githubusercontent.com/63928525/128098815-9685a7e8-2d6e-4cb4-830d-faf16e744709.png" align="right"> These three I2C devices under PCI0 should be removed but I haven't found a way to solve this. VoodooI2C is necessary to make the touchscreen work. <a href="https://github.com/VoodooI2C/VoodooI2C/issues/408">More info</a>.
+<h2>Hardware notes</h2>
 
-Battery lasts about 3-4h with a full charge, with a 0.8-1.1W idle power consumption. Undervolting with Voltageshift is a good idea.
+- <b>If your laptop has a Samsung PM981 NVMe SSD you have to buy another one</b>, because that drive <a href="https://github.com/tylernguyen/x1c6-hackintosh/issues/43">doesn't work with macOS</a> at all.
+- <b>Important info about the network card</b>:
+  - The original network card (Intel wireless 9560NGW) works with <a href="https://github.com/OpenIntelWireless">OpenIntelWireless</a>. Anyway, if you're interested in features such as Airdrop or Handoff, a supported Broadcom card is a better choice. Check <a href="https://dortania.github.io/Wireless-Buyers-Guide/types-of-wireless-card/m2.html">Dortania Wireless Buyers Guide</a>.
+  - I have tested multiple Broadcom network cards, and the results probably show some hardware limitations of this laptop. In particular:
+    - I tried two <b>BCM94360NG</b> cards. The card doesn't work in this laptop: the <ins>PCIe wireless device isn't enumerated</ins> at all in PCIe bus. Bluetooth (USB), instead, works.
+    - I also tested two <b>BCM94360CS2</b> cards, with two different adapters, in every possible combination. In this case, the PCIe wireless interface is recognized and works, instead <ins>Bluetooth isn't recognized</ins> at all (HS10 USB port is empty). The above applies to both MacOS, Windows and Linux. Consider that this card doesn't fit the laptop and probably needs some DIY.
+    - The culprit could be the CNVio interface of the M.2 connector of this laptop. However, this doesn't explain why the wireless interface of BCM94360CS2 (PCIe) was recognized! Another problem could be the BIOS of the laptop, but I don't have the knowledge to find out.
+    - I'm currently using a <b>BCM94350ZAE</b> card, and in particular an OEM card (Lenovo FRU 00JT494). It still can be found in Aliexpress and it's cheap. This card <ins>works well</ins> with AirDrop, Handoff and Universal Clipboard support (at least in Big Sur, Monterey is more problematic). However, Personal Hotspot and Apple Watch Unlock don't work (you need an original Apple Airport card). The guide suggests to set aspm to 0 because the BCM94350ZAE chipset doesn't support power management correctly in macOS. However, I think that it is probably better to mask pin 53 (more info: <a href="https://github.com/acidanthera/bugtracker/issues/794">here</a> and <a href="https://github.com/acidanthera/bugtracker/issues/1646#issuecomment-877663608">here</a>). If you mask pin 53, you can avoid to use AirPortBrcmFixup kext (Bluetooth kexts still needed).
+    - I want to test also a BCM94352Z Fenvi card as a last resort. I will provide updates. Feel free to share your tests and your experience with these or other cards.
+<img src="https://user-images.githubusercontent.com/63928525/128098815-9685a7e8-2d6e-4cb4-830d-faf16e744709.png" align="right"> 
+
+- These three I2C devices under PCI0 should be removed but I haven't found a way to solve this. VoodooI2C is necessary to make the touchscreen work. <a href="https://github.com/VoodooI2C/VoodooI2C/issues/408">More info</a>.
+ - Battery lasts about 3-4h with a full charge, with a 0.8-1.1W idle power consumption. Undervolting with Voltageshift is a good idea.
 
 <h2>Thanks to</h2>
 

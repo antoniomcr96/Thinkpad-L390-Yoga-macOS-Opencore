@@ -1,7 +1,7 @@
 # Thinkpad-L390-Yoga-macOS-Opencore
 This repository contains the files needed to successfully boot macOS on Lenovo Thinkpad L390 Yoga with Opencore.
 
-<p align="center"><img src="./.github/l390yoga.png" alt="Thinkpad L390 Yoga" width="40%" align="Right"><a href="https://pcsupport.lenovo.com/us/it/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l390-yoga-type-20nt-20nu/downloads/ds505882"><img src="https://img.shields.io/badge/BIOS-1.36-blue"></a> &nbsp;&nbsp;<a href="https://github.com/acidanthera/OpenCorePkg"><img src="https://img.shields.io/badge/OpenCore-0.7.9-blue"></a> &nbsp;&nbsp;<img src="https://img.shields.io/badge/MacOS-12-blue"></p>
+<p align="center"><img src="./.github/l390yoga.png" alt="Thinkpad L390 Yoga" width="40%" align="Right"><a href="https://pcsupport.lenovo.com/us/it/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l390-yoga-type-20nt-20nu/downloads/ds505882"><img src="https://img.shields.io/badge/BIOS-1.36-blue"></a> &nbsp;&nbsp;<a href="https://github.com/acidanthera/OpenCorePkg"><img src="https://img.shields.io/badge/OpenCore-0.8.0-blue"></a> &nbsp;&nbsp;<img src="https://img.shields.io/badge/MacOS-12-blue"></p>
 The project is stable. Mac OS 12 works with Windows 11 in dual boot. There are probably things that can be improved, so feel free to open issues or even PRs with suggestions or observations.<br> <b>This is not a support forum</b>, I won't be able to give individual support. I suggest to use the <a href="https://dortania.github.io/OpenCore-Install-Guide/">Dortania's Opencore Install Guide</a> to build your EFI folder, then compare with this EFI for the last improvements.
 
 <h2>Configuration</h2>
@@ -20,11 +20,12 @@ The project is stable. Mac OS 12 works with Windows 11 in dual boot. There are p
 <img src="./.github/info.png"></div>
 <h2>Status</h2>
 <h3>What works</h3>
-Almost everything, including gestures, multitouch, touchscreen, bootchime (thanks @mikebeaton), external video output, EC keys, sleep, hibernation, Handoff, Airdrop, ...
+Almost everything, including gestures, multitouch, touchscreen, bootchime (thanks @mikebeaton), external video output, EC keys, sleep, hibernation ...
 <h3>What doesn't work but might be fixed in the future</h3>
 
 - Realtek Card Reader: it works with <a href="https://github.com/0xFireWolf/RealtekCardReader">this driver</a> by 0xFireWolf. However, I have noticed an increase in power consumption (about 0.5w on idle) with the card reader enabled and the kext, so I prefer to disable it;
 - Some features of YogaSMC kext: for info, follow <a href="https://github.com/zhen-zen/YogaSMC/issues/68#">this issue</a> and feel free to contribute;
+- Continuity features: you need a genuine Apple Airport card to make them work. I tried to install multiple Apple network cards in this laptop, but the m.2 interface is probably incompatible (everything is described below)
 
 <h3>What doesn't work</h3>
 
@@ -76,11 +77,10 @@ Almost everything, including gestures, multitouch, touchscreen, bootchime (thank
   - The original network card (Intel wireless 9560NGW) works with <a href="https://github.com/OpenIntelWireless">OpenIntelWireless</a>. Anyway, if you're interested in features such as Airdrop or Handoff, a supported Broadcom card is a better choice. Check <a href="https://dortania.github.io/Wireless-Buyers-Guide/types-of-wireless-card/m2.html">Dortania Wireless Buyers Guide</a>.
   - I have tested multiple Broadcom network cards, and the results probably show some hardware limitations of this laptop. In particular:
     - I tried two <b>BCM94360NG</b> cards. The card doesn't work in this laptop: the <ins>PCIe wireless device isn't enumerated</ins> at all in PCIe bus. Bluetooth (USB), instead, works.
-    - I also tested two <b>BCM94360CS2</b> cards, with two different adapters, in every possible combination. In this case, the PCIe wireless interface is recognized and works, instead <ins>Bluetooth isn't recognized</ins> at all (HS10 USB port is empty). The above applies to both MacOS, Windows and Linux. Consider that this card doesn't fit the laptop and probably needs some DIY.
-    - The culprit could be the CNVio interface of the M.2 connector of this laptop. However, this doesn't explain why the wireless interface of BCM94360CS2 (PCIe) was recognized! Another problem could be the BIOS of the laptop, but I don't have the knowledge to find out.
-    - I'm currently using a <b>BCM94350ZAE</b> card, and in particular an OEM card (Lenovo FRU 00JT494). It still can be found in Aliexpress and it's cheap. This card <ins>works well</ins> with AirDrop, Handoff and Universal Clipboard support (at least in Big Sur, Monterey is more problematic). However, Personal Hotspot and Apple Watch Unlock don't work (you need an original Apple Airport card). The guide suggests to set aspm to 0 because the BCM94350ZAE chipset doesn't support power management correctly in macOS. However, I think that it is probably better to mask pin 53 (more info: <a href="https://github.com/acidanthera/bugtracker/issues/794">here</a> and <a href="https://github.com/acidanthera/bugtracker/issues/1646#issuecomment-877663608">here</a>). If you mask pin 53, you can avoid to use AirPortBrcmFixup kext (Bluetooth kexts still needed).
-    - I want to test also a BCM94352Z Fenvi card as a last resort. I will provide updates. Feel free to share your tests and your experience with these or other cards.
-<img src="https://user-images.githubusercontent.com/63928525/128098815-9685a7e8-2d6e-4cb4-830d-faf16e744709.png" align="right"> 
+    - I also tested two <b>BCM94360CS2</b> cards and a <b>BCRM943602CS</b> card, with two different adapters, in every possible combination. In this case, the PCIe wireless interface is recognized and works, instead <ins>Bluetooth isn't recognized</ins> at all (HS10 USB port is empty). The above applies to both MacOS, Windows and Linux. Consider that this card doesn't fit the laptop and probably needs some DIY.
+    - The culprit could be the CNVio interface of the M.2 connector of this laptop. However, this doesn't explain why the wireless interface of BCM94360CS2 and BCM943602CS (PCIe) was recognized! Another problem could be the BIOS of the laptop, but I don't have the knowledge to find out.
+    - I'm currently using a <b>BCM94350ZAE</b> card, and in particular an OEM card (Lenovo FRU 00JT494). It still can be found in Aliexpress and it's cheap. This card <ins>works</ins> with AirDrop, Handoff and Universal Clipboard support (at least in Big Sur, Monterey is more problematic). However, Personal Hotspot and Apple Watch Unlock don't work (you need an original Apple Airport card). The guide suggests to set aspm to 0 because the BCM94350ZAE chipset doesn't support power management correctly in macOS. However, I think that it is probably better to mask pin 53 (more info: <a href="https://github.com/acidanthera/bugtracker/issues/794">here</a> and <a href="https://github.com/acidanthera/bugtracker/issues/1646#issuecomment-877663608">here</a>). If you mask pin 53, you can avoid to use AirPortBrcmFixup kext (Bluetooth kexts still needed).
+<img src="https://user-images.githubusercontent.com/63928525/128098815-9685a7e8-2d6e-4cb4-830d-faf16e744709.png" align="right">
 
 - These three I2C devices under PCI0 should be removed but I haven't found a way to solve this. VoodooI2C is necessary to make the touchscreen work. <a href="https://github.com/VoodooI2C/VoodooI2C/issues/408">More info</a>.
  - Battery lasts about 3-4h with a full charge, with a 0.8-1.1W idle power consumption. Undervolting with Voltageshift is a good idea.

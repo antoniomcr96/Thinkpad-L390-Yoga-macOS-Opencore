@@ -398,7 +398,9 @@
                     <data>BQAAAA==</data>
                     <key>backlight-smoother-steps</key>
                     <data>EwAAAA==</data>
-                    <key>force-online</key>
+                    <key>#force-online</key>
+                    <data>AQAAAA==</data>
+                    <key>enable-backlight-registers-fix</key>
                     <data>AQAAAA==</data>
                 </dict>
                 <key>PciRoot(0x0)/Pci(0x12,0x0)</key>
@@ -838,24 +840,6 @@
                     <key>Arch</key>
                     <string>Any</string>
                     <key>BundlePath</key>
-                    <string>BlueToolFixup.kext</string>
-                    <key>Comment</key>
-                    <string></string>
-                    <key>Enabled</key>
-                    <true/>
-                    <key>ExecutablePath</key>
-                    <string>Contents/MacOS/BlueToolFixup</string>
-                    <key>MaxKernel</key>
-                    <string></string>
-                    <key>MinKernel</key>
-                    <string></string>
-                    <key>PlistPath</key>
-                    <string>Contents/Info.plist</string>
-                </dict>
-                <dict>
-                    <key>Arch</key>
-                    <string>Any</string>
-                    <key>BundlePath</key>
                     <string>HibernationFixup.kext</string>
                     <key>Comment</key>
                     <string>For support of Hibernation Mode 25</string>
@@ -903,6 +887,24 @@
                     <string></string>
                     <key>Arch</key>
                     <string>Any</string>
+                    <key>PlistPath</key>
+                    <string>Contents/Info.plist</string>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>Any</string>
+                    <key>BundlePath</key>
+                    <string>BlueToolFixup.kext</string>
+                    <key>Comment</key>
+                    <string></string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>ExecutablePath</key>
+                    <string>Contents/MacOS/BlueToolFixup</string>
+                    <key>MaxKernel</key>
+                    <string></string>
+                    <key>MinKernel</key>
+                    <string></string>
                     <key>PlistPath</key>
                     <string>Contents/Info.plist</string>
                 </dict>
@@ -1071,7 +1073,7 @@
                 <key>DisableRtcChecksum</key>
                 <false/>
                 <key>ExtendBTFeatureFlags</key>
-                <false/>
+                <true/>
                 <key>ExternalDiskIcons</key>
                 <false/>
                 <key>ForceAquantiaEthernet</key>
@@ -1207,11 +1209,7 @@
             </array>
             <key>Security</key>
             <dict>
-                <key>AllowNvramReset</key>
-                <true/>
                 <key>AllowSetDefault</key>
-                <true/>
-                <key>AllowToggleSip</key>
                 <true/>
                 <key>ApECID</key>
                 <integer>0</integer>
@@ -1478,44 +1476,64 @@
             <key>Drivers</key>
             <array>
                 <dict>
-                    <key>Path</key>
-                    <string>AudioDxe.efi</string>
                     <key>Enabled</key>
                     <true/>
                     <key>Arguments</key>
                     <string>--restore-nosnoop</string>
                     <key>Comment</key>
                     <string></string>
+                    <key>Path</key>
+                    <string>AudioDxe.efi</string>
                 </dict>
                 <dict>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Arguments</key>
+                    <string></string>
+                    <key>Comment</key>
+                    <string></string>
                     <key>Path</key>
                     <string>HfsPlus.efi</string>
+                </dict>
+                <dict>
                     <key>Enabled</key>
                     <true/>
                     <key>Arguments</key>
                     <string></string>
                     <key>Comment</key>
                     <string></string>
-                </dict>
-                <dict>
                     <key>Path</key>
                     <string>OpenRuntime.efi</string>
-                    <key>Enabled</key>
-                    <true/>
-                    <key>Arguments</key>
-                    <string></string>
-                    <key>Comment</key>
-                    <string></string>
                 </dict>
                 <dict>
-                    <key>Path</key>
-                    <string>OpenCanopy.efi</string>
                     <key>Enabled</key>
                     <true/>
                     <key>Arguments</key>
                     <string></string>
                     <key>Comment</key>
                     <string></string>
+                    <key>Path</key>
+                    <string>OpenCanopy.efi</string>
+                </dict>
+                <dict>
+                  <key>Arguments</key>
+                  <string></string>
+                  <key>Comment</key>
+                  <string></string>
+                  <key>Enabled</key>
+                  <false/>
+                  <key>Path</key>
+                  <string>ResetNvramEntry.efi</string>
+                </dict>
+                <dict>
+                  <key>Arguments</key>
+                  <string></string>
+                  <key>Comment</key>
+                  <string></string>
+                  <key>Enabled</key>
+                  <false/>
+                  <key>Path</key>
+                  <string>ToggleSipEntry.efi</string>
                 </dict>
             </array>
             <key>Input</key>

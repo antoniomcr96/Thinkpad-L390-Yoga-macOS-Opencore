@@ -283,24 +283,7 @@
         <key>Booter</key>
         <dict>
             <key>MmioWhitelist</key>
-            <array>
-                <dict>
-                    <key>Address</key>
-                    <integer>4275159040</integer>
-                    <key>Comment</key>
-                    <string>Haswell: SB_RCBA is a 0x4 page memory region, containing SPI_BASE at 0x3800 (SPI_BASE_ADDRESS)</string>
-                    <key>Enabled</key>
-                    <false/>
-                </dict>
-                <dict>
-                    <key>Address</key>
-                    <integer>4278190080</integer>
-                    <key>Comment</key>
-                    <string>Generic: PCI root is a 0x1000 page memory region used by some firmwares</string>
-                    <key>Enabled</key>
-                    <false/>
-                </dict>
-            </array>
+            <array/>
             <key>Patch</key>
             <array>
                 <dict>
@@ -957,6 +940,8 @@
                 <key>MinKernel</key>
                 <string></string>
             </dict>
+            <key>Force</key>
+            <array/>
             <key>Patch</key>
             <array>
                 <dict>
@@ -1060,6 +1045,8 @@
                 <false/>
                 <key>AppleXcpmForceBoost</key>
                 <false/>
+                <key>CustomPciSerialDevice</key>
+                <false/>
                 <key>CustomSMBIOSGuid</key>
                 <true/>
                 <key>DisableIoMapper</key>
@@ -1072,6 +1059,8 @@
                 <false/>
                 <key>ExternalDiskIcons</key>
                 <false/>
+                <key>ForceAquantiaEthernet</key>
+                <false/>
                 <key>ForceSecureBootScheme</key>
                 <false/>
                 <key>IncreasePciBarSize</key>
@@ -1081,7 +1070,7 @@
                 <key>LegacyCommpage</key>
                 <false/>
                 <key>PanicNoKextDump</key>
-                <true/>
+                <false/>
                 <key>PowerTimeoutKernelPanic</key>
                 <true/>
                 <key>ProvideCurrentCpuInfo</key>
@@ -1104,29 +1093,6 @@
                 <key>KernelCache</key>
                 <string>Auto</string>
             </dict>
-            <key>Force</key>
-            <array>
-                <dict>
-                    <key>Arch</key>
-                    <string>Any</string>
-                    <key>BundlePath</key>
-                    <string>System/Library/Extensions/IONetworkingFamily.kext</string>
-                    <key>Comment</key>
-                    <string></string>
-                    <key>Enabled</key>
-                    <false/>
-                    <key>ExecutablePath</key>
-                    <string>Contents/MacOS/IONetworkingFamily</string>
-                    <key>Identifier</key>
-                    <string>com.apple.iokit.IONetworkingFamily</string>
-                    <key>MaxKernel</key>
-                    <string>13.99.99</string>
-                    <key>MinKernel</key>
-                    <string></string>
-                    <key>PlistPath</key>
-                    <string>Contents/Info.plist</string>
-                </dict>
-            </array>
         </dict>
         <key>Misc</key>
         <dict>
@@ -1137,7 +1103,7 @@
                 <key>ConsoleAttributes</key>
                 <integer>0</integer>
                 <key>HibernateMode</key>
-                <string>Auto</string>
+                <string>NVRAM</string>
                 <key>HideAuxiliary</key>
                 <false/>
                 <key>LauncherOption</key>
@@ -1155,7 +1121,7 @@
                 <key>PollAppleHotKeys</key>
                 <false/>
                 <key>ShowPicker</key>
-                <false/>
+                <true/>
                 <key>TakeoffDelay</key>
                 <integer>0</integer>
                 <key>Timeout</key>
@@ -1175,8 +1141,6 @@
                 <integer>2147483714</integer>
                 <key>LogModules</key>
                 <string>*</string>
-                <key>SerialInit</key>
-                <false/>
                 <key>SysReport</key>
                 <false/>
                 <key>Target</key>
@@ -1193,20 +1157,18 @@
                     <string>Not signed for security reasons</string>
                     <key>Enabled</key>
                     <false/>
+                    <key>Flavour</key>
+                    <string>Auto</string>
                     <key>Name</key>
                     <string>CustomOS</string>
                     <key>Path</key>
-                    <string>PciRoot(0x0)/Pci(0x1,0x1)/Pci(0x0,0x0)/NVMe(0x1,11-22-33-44-55-66-77-88)/HD(1,GPT,00000000-0000-0000-0000-000000000000,0x800,0x64000)/\EFI\BOOT\BOOTX64.EFI</string>
-                    <key>Flavour</key>
-                    <string>Auto</string>
+                    <string>PciRoot0x0/Pci0x10x1/Pci0x00x0/NVMe0x111-22-33-44-55-66-77-88/HD1GPT00000000-0000-0000-0000-0000000000000x8000x64000/\EFI\BOOT\BOOTX64.EFI</string>
                     <key>TextMode</key>
                     <false/>
                 </dict>
             </array>
             <key>Security</key>
             <dict>
-                <key>AllowNvramReset</key>
-                <true/>
                 <key>AllowSetDefault</key>
                 <true/>
                 <key>ApECID</key>
@@ -1233,8 +1195,40 @@
                 <string>Default</string>
                 <key>Vault</key>
                 <string>Optional</string>
-                <key>AllowToggleSip</key>
-                <true/>
+            </dict>
+            <key>Serial</key>
+            <dict>
+                <key>Custom</key>
+                <dict>
+                    <key>BaudRate</key>
+                    <integer>115200</integer>
+                    <key>ClockRate</key>
+                    <integer>1843200</integer>
+                    <key>DetectCable</key>
+                    <false/>
+                    <key>ExtendedTxFifoSize</key>
+                    <integer>64</integer>
+                    <key>FifoControl</key>
+                    <integer>7</integer>
+                    <key>LineControl</key>
+                    <integer>3</integer>
+                    <key>PciDeviceInfo</key>
+                    <data>/w==</data>
+                    <key>RegisterAccessWidth</key>
+                    <integer>8</integer>
+                    <key>RegisterBase</key>
+                    <integer>1016</integer>
+                    <key>RegisterStride</key>
+                    <integer>1</integer>
+                    <key>UseHardwareFlowControl</key>
+                    <false/>
+                    <key>UseMmio</key>
+                    <false/>
+                </dict>
+                <key>Init</key>
+                <false/>
+                <key>Override</key>
+                <false/>
             </dict>
             <key>Tools</key>
             <array>
@@ -1249,6 +1243,8 @@
                     <false/>
                     <key>Flavour</key>
                     <string>OpenShell:UEFIShell:Shell</string>
+                    <key>FullNvramAccess</key>
+                    <false/>
                     <key>Name</key>
                     <string>UEFI Shell</string>
                     <key>Path</key>
@@ -1269,6 +1265,8 @@
                     <false/>
                     <key>Flavour</key>
                     <string>MemTest</string>
+                    <key>FullNvramAccess</key>
+                    <false/>
                     <key>Name</key>
                     <string>memtest86</string>
                     <key>Path</key>
@@ -1322,8 +1320,6 @@
                     <string>boot-args</string>
                 </array>
             </dict>
-            <key>LegacyEnable</key>
-            <false/>
             <key>LegacyOverwrite</key>
             <false/>
             <key>LegacySchema</key>
@@ -1469,44 +1465,76 @@
             <key>Drivers</key>
             <array>
                 <dict>
-                    <key>Path</key>
-                    <string>AudioDxe.efi</string>
-                    <key>Enabled</key>
-                    <true/>
                     <key>Arguments</key>
                     <string>--restore-nosnoop</string>
                     <key>Comment</key>
                     <string></string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>LoadEarly</key>
+                    <false/>
+                    <key>Path</key>
+                    <string>AudioDxe.efi</string>
                 </dict>
                 <dict>
+                    <key>Arguments</key>
+                    <string></string>
+                    <key>Comment</key>
+                    <string></string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>LoadEarly</key>
+                    <false/>
                     <key>Path</key>
                     <string>HfsPlus.efi</string>
-                    <key>Enabled</key>
-                    <true/>
+                </dict>
+                <dict>
                     <key>Arguments</key>
                     <string></string>
                     <key>Comment</key>
                     <string></string>
-                </dict>
-                <dict>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>LoadEarly</key>
+                    <false/>
                     <key>Path</key>
                     <string>OpenRuntime.efi</string>
-                    <key>Enabled</key>
-                    <true/>
-                    <key>Arguments</key>
-                    <string></string>
-                    <key>Comment</key>
-                    <string></string>
                 </dict>
                 <dict>
-                    <key>Path</key>
-                    <string>OpenCanopy.efi</string>
-                    <key>Enabled</key>
-                    <true/>
                     <key>Arguments</key>
                     <string></string>
                     <key>Comment</key>
                     <string></string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>LoadEarly</key>
+                    <false/>
+                    <key>Path</key>
+                    <string>OpenCanopy.efi</string>
+                </dict>
+                <dict>
+                    <key>Arguments</key>
+                    <string></string>
+                    <key>Comment</key>
+                    <string></string>
+                    <key>Enabled</key>
+                    <false/>
+                    <key>LoadEarly</key>
+                    <false/>
+                    <key>Path</key>
+                    <string>ResetNvramEntry.efi</string>
+                </dict>
+                <dict>
+                    <key>Arguments</key>
+                    <string></string>
+                    <key>Comment</key>
+                    <string></string>
+                    <key>Enabled</key>
+                    <false/>
+                    <key>LoadEarly</key>
+                    <false/>
+                    <key>Path</key>
+                    <string>ToggleSipEntry.efi</string>
                 </dict>
             </array>
             <key>Input</key>

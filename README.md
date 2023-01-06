@@ -1,8 +1,9 @@
 # Thinkpad-L390-Yoga-macOS-Opencore
 This repository contains the files needed to successfully boot macOS on Lenovo Thinkpad L390 Yoga with Opencore.
+After installing Mac OS 12 and 13, which work well with the current setup, I decided to use <b>Mac OS 11</b> because it guarantees the best compatibility with bluetooth services (handoff, universal clipboard, sidecar...).
 
-<p align="center"><img src="./.github/l390yoga.png" alt="Thinkpad L390 Yoga" width="40%" align="Right"><a href="https://pcsupport.lenovo.com/us/it/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l390-yoga-type-20nt-20nu/downloads/ds505882"><img src="https://img.shields.io/badge/BIOS-1.39-blue"></a> &nbsp;&nbsp;<a href="https://github.com/acidanthera/OpenCorePkg"><img src="https://img.shields.io/badge/OpenCore-0.8.4-blue"></a> &nbsp;&nbsp;<img src="https://img.shields.io/badge/MacOS-12-blue"></p>
-The project is stable. Mac OS 12 works with Windows 11 in dual boot. There are probably things that can be improved, so feel free to open issues or even PRs with suggestions or observations.<br> <b>This is not a support forum</b>, I won't be able to give individual support. I suggest to use the <a href="https://dortania.github.io/OpenCore-Install-Guide/">Dortania's Opencore Install Guide</a> to build your EFI folder, then compare with this EFI for the last improvements.
+<p align="center"><img src="./.github/l390yoga.png" alt="Thinkpad L390 Yoga" width="40%" align="Right"><a href="https://pcsupport.lenovo.com/us/it/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l390-yoga-type-20nt-20nu/downloads/ds505882"><img src="https://img.shields.io/badge/BIOS-1.39-blue"></a> &nbsp;&nbsp;<a href="https://github.com/acidanthera/OpenCorePkg"><img src="https://img.shields.io/badge/OpenCore-0.8.8-blue"></a> &nbsp;&nbsp;<img src="https://img.shields.io/badge/MacOS-11-blue"></p>
+The project is stable. Mac OS 11 works with Windows 11 in dual boot. There are probably things that can be improved, so feel free to open issues or even PRs with suggestions or observations.<br> <b>This is not a support forum</b>, I won't be able to give individual support. I suggest to use the <a href="https://dortania.github.io/OpenCore-Install-Guide/">Dortania's Opencore Install Guide</a> to build your EFI folder, then compare with this EFI for the last improvements.
 
 <h2>Configuration</h2>
 <div align="center">
@@ -64,7 +65,7 @@ Almost everything, including gestures, multitouch, touchscreen, bootchime (thank
     - AppleCpuPmCfgLock / AppleXcpmCfgLock -> Interestingly, <a href="https://github.com/simprecicchiani/ThinkPad-T460s-macOS-OpenCore/issues/8">system boots even though these two patches are disabled and CFG Lock is enabled</a>. Patching CFGLock (or DVMT), maybe, is possible only with a <a href="https://github.com/tylernguyen/x1c6-hackintosh/blob/main/docs/BIOS.md#modding-the-bios">CH341A + SOIC programmer</a>. Anyway, <a href="https://github.com/digmorepaka/thinkpad-firmware-patches">there isn't any public BIOS full patch</a> (with advanced menu) available for this laptop</a>;
   - <b>Kernel</b>/<b>Add</b>:
     - BrcmPatchRAM, BrcmFirmwareData, AirportBrcmFixup are useful for non-native Broadcom network cards, remove if not needed;
-    - BlueToolFixup: <a href="https://github.com/acidanthera/BrcmPatchRAM/pull/12">required for Bluetooth</a> with non-native network cards in Monterey. In Big Sur (and older) replace with BrcmBluetoothInjector.kext;
+    - BlueToolFixup: <a href="https://github.com/acidanthera/BrcmPatchRAM/pull/12">required for Bluetooth</a> with non-native network cards in Monterey and newer. In Big Sur (and older) use BrcmBluetoothInjector.kext;
   - <b>NVRAM</b>
     - rtc-blacklist -> for hibernation. You can remove the content of this entry, along with HibernationFixUp and RTCMemoryFixUp kexts, if you don't use hibernation;
     - hbfx-ahbm = 1445 -> Auto-hibernation. The value means 1: Enable; +4: When External Power is disconnected; +32: When Battery At Critical Level; +128: DisableStimulusDarkWakeActivityTickle, not sure if useful; +256+1024 = 5%;

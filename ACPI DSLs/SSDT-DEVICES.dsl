@@ -11,7 +11,7 @@ DefinitionBlock ("", "SSDT", 2, "THKP", "DEVICES", 0x00001000)
     {
         //_PRW Method for ADP1 Device
         // https://github.com/khronokernel/DarwinDumped/blob/b6d91cf4a5bdf1d4860add87cf6464839b92d5bb/MacBookPro/MacBookPro15%2C1/ACPI%20Tables/DSL/DSDT.dsl#L5988
-        // Patches ADP1 to allow ACPIACAdapter to attach to the device
+        // Patches ADP1 to allow ACPIACAdapter to attach to the device, not sure if useful
         Method (_PRW, 0, NotSerialized)
         {
             If ((\OSDW () || \LWCP))
@@ -99,15 +99,32 @@ DefinitionBlock ("", "SSDT", 2, "THKP", "DEVICES", 0x00001000)
         }
         
         //Thermal Controller
+        //https://github.com/khronokernel/DarwinDumped/blob/b6d91cf4a5bdf1d4860add87cf6464839b92d5bb/MacBookPro/MacBookPro15%2C1/ACPI%20Tables/DSL/DSDT.dsl#L4459
         Device (PMCR)
         {
             Name (_ADR, 0x00120000) 
+            //Lines from MBP15,1 DSDT
+            /*Name (_HID, EisaId ("APP9876"))  // _HID: Hardware ID
+            Name (_STA, 0x0B)  // _STA: Status
+            Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+            {
+                Memory32Fixed (ReadWrite,
+                    0xFE000000,         // Address Base
+                    0x00010000,         // Address Length
+                    )
+            })*/
         }
 
         // Shared SRAM
         Device (SRAM)
         {
             Name (_ADR, 0x00140002) 
+        }
+        //SPI controller
+        //https://github.com/khronokernel/DarwinDumped/blob/b6d91cf4a5bdf1d4860add87cf6464839b92d5bb/MacBookPro/MacBookPro15%2C1/ACPI%20Tables/DSL/DSDT.dsl#L4821
+        Device (XSPI)
+        {
+            Name (_ADR, 0x001F0005)  // _ADR: Address
         }
     }
 

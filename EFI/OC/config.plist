@@ -8,12 +8,12 @@
             <array>
                 <dict>
                     <key>Comment</key>
-                    <string>disables RTC device,  HPET and creates OSDW method</string>
+                    <string>Creates OSDW method, disables RTC and HPET devices,  patches GPRW.</string>
                     <key>Enabled</key>
                     <true/>
                     <key>Path</key>
-                    <string>SSDT-AWAC-HPET-OSDW.aml</string>
-                </dict>
+                    <string>SSDT-INIT.aml</string>
+                 </dict>
                 <dict>
                     <key>Comment</key>
                     <string>SSDT-PLUG.aml</string>
@@ -21,14 +21,6 @@
                     <true/>
                     <key>Path</key>
                     <string>SSDT-PLUG.aml</string>
-                </dict>
-                <dict>
-                    <key>Comment</key>
-                    <string>SSDT-GPRW.aml</string>
-                    <key>Enabled</key>
-                    <true/>
-                    <key>Path</key>
-                    <string>SSDT-GPRW.aml</string>
                 </dict>
                 <dict>
                     <key>Comment</key>
@@ -48,7 +40,7 @@
                 </dict>
                 <dict>
                     <key>Comment</key>
-                    <string>patches ADP1 to allow ACPIACAdapter to attach to the device; injects PWRB, DMAC, MCHC, PPMC,BUS0, PGMM, PMCR, SRAM devices</string>
+                    <string>patches ADP1 to allow ACPIACAdapter to attach to the device; injects PWRB, DMAC, MCHC, PPMC,BUS0, XSPI, PGMM, PMCR, SRAM devices</string>
                     <key>Enabled</key>
                     <true/>
                     <key>Path</key>

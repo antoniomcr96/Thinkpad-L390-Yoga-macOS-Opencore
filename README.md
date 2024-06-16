@@ -46,7 +46,7 @@ Almost everything, including gestures, multitouch, touchscreen, bootchime (thank
 
 <h3>SSDTs</h3>
 
-  - <b>SSDT-INIT/b>: disables RTC device, HPET, injects a OSDW method (useful to check if the system is MacOS) + personal patch to avoid instant wake after sleep with certain usb devices plugged. It patches _PRW methods and must be associated with the relative ACPI patch in config.plist;
+  - <b>SSDT-INIT</b>: disables RTC device, HPET, injects a OSDW method (useful to check if the system is MacOS) + personal patch to avoid instant wake after sleep with certain usb devices plugged. It patches _PRW methods and must be associated with the relative ACPI patch in config.plist;
   - <b>SSDT-DEVICES</b>: patches ADP1 to allow ACPIACAdapter to attach to the device; injects PWRB, DMAC, MCHC, and BUS0 devices (not sure if it makes the difference); injects PGMM, PMCR, SRAM for cosmetic reasons;
   - <b>SSDT-HWAC</b>: patches the access in the only 16-bit field of EC;
   - <b>SSDT-KEYS</b>: makes the brightness keys work (alternative: <a href="https://github.com/acidanthera/BrightnessKeys">Brightness Keys kext</a>) and patches wrong keys for VoodooPS2Controller;

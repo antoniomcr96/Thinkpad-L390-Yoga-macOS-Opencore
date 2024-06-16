@@ -5,7 +5,10 @@ DefinitionBlock ("", "SSDT", 2, "THKP", "INIT", 0x00000000)
     External (STAS, IntObj)
     External (_SB_.PCI0.XHC_._PRW, PkgObj)
     External (GPRW, MethodObj)    // 2 Arguments
-
+    External (LNUX, IntObj)
+    External (STAS, IntObj)
+    External (WNTF, FieldUnitObj)
+    External (DPTF, FieldUnitObj)
 
     Scope (\)
     {
@@ -38,6 +41,12 @@ DefinitionBlock ("", "SSDT", 2, "THKP", "INIT", 0x00000000)
             
                 // Disable HPET. Shouldn't be necessary in modern systems and it is disabled in genuine MacBooks
                 HPTE = Zero
+                
+                // Enable DYTC during initialization (for YogaSMC)
+                Debug = "Enable DYTC"
+                WNTF = One
+                LNUX = One
+                DPTF = Zero
                 
                 // GPRW part. In DSDT, XHC._PRW isn't a method but a package, this patches the second value (if system is MacOs)
                 \_SB.PCI0.XHC._PRW [One] = Zero

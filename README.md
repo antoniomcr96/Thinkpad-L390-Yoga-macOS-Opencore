@@ -2,7 +2,7 @@
 This repository contains the files needed to successfully boot macOS on Lenovo Thinkpad L390 Yoga with Opencore.
 After installing Mac OS 12 and 13, which work well with the current setup, I decided to use <b>Mac OS 11</b> because it guarantees the best compatibility with bluetooth services (handoff, universal clipboard, sidecar...).
 
-<p align="center"><img src="./.github/l390yoga.png" alt="Thinkpad L390 Yoga" width="40%" align="Right"><a href="https://pcsupport.lenovo.com/us/it/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l390-yoga-type-20nt-20nu/downloads/ds505882"><img src="https://img.shields.io/badge/BIOS-1.41-blue"></a> &nbsp;&nbsp;<a href="https://github.com/acidanthera/OpenCorePkg"><img src="https://img.shields.io/badge/OpenCore-0.9.1-blue"></a> &nbsp;&nbsp;<img src="https://img.shields.io/badge/MacOS-11-blue"></p>
+<p align="center"><img src="./.github/l390yoga.png" alt="Thinkpad L390 Yoga" width="40%" align="Right"><a href="https://pcsupport.lenovo.com/us/it/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l390-yoga-type-20nt-20nu/downloads/ds505882"><img src="https://img.shields.io/badge/BIOS-1.47-blue"></a> &nbsp;&nbsp;<a href="https://github.com/acidanthera/OpenCorePkg"><img src="https://img.shields.io/badge/OpenCore-1.0.0-blue"></a> &nbsp;&nbsp;<img src="https://img.shields.io/badge/MacOS-11-blue"></p>
 The project is stable. Mac OS 11 works with Windows 11 in dual boot. There are probably things that can be improved, so feel free to open issues or even PRs with suggestions or observations.<br> <b>This is not a support forum</b>, I won't be able to give individual support. I suggest to use the <a href="https://dortania.github.io/OpenCore-Install-Guide/">Dortania's Opencore Install Guide</a> to build your EFI folder, then compare with this EFI for the last improvements.
 
 <h2>Configuration</h2>
@@ -46,9 +46,8 @@ Almost everything, including gestures, multitouch, touchscreen, bootchime (thank
 
 <h3>SSDTs</h3>
 
-  - <b>SSDT-AWAC-HPET-OSDW</b>: disables RTC device, HPET and injects a OSDW method (useful to check if the system is MacOS);
+  - <b>SSDT-INIT/b>: disables RTC device, HPET, injects a OSDW method (useful to check if the system is MacOS) + personal patch to avoid instant wake after sleep with certain usb devices plugged. It patches _PRW methods and must be associated with the relative ACPI patch in config.plist;
   - <b>SSDT-DEVICES</b>: patches ADP1 to allow ACPIACAdapter to attach to the device; injects PWRB, DMAC, MCHC, and BUS0 devices (not sure if it makes the difference); injects PGMM, PMCR, SRAM for cosmetic reasons;
-  - <b>SSDT-GPRW</b>: personal patch to avoid instant wake after sleep with certain usb devices plugged. It patches _PRW methods and must be associated with the relative ACPI patch in config.plist;
   - <b>SSDT-HWAC</b>: patches the access in the only 16-bit field of EC;
   - <b>SSDT-KEYS</b>: makes the brightness keys work (alternative: <a href="https://github.com/acidanthera/BrightnessKeys">Brightness Keys kext</a>) and patches wrong keys for VoodooPS2Controller;
   - <b>SSDT-PNLF</b>: from the cross-platform <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/Source/SSDT-PNLF.dsl">SSDT</a>, only for Coffee Lake;

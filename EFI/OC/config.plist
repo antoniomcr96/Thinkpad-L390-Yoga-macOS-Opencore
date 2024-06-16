@@ -13,7 +13,7 @@
                     <true/>
                     <key>Path</key>
                     <string>SSDT-INIT.aml</string>
-                 </dict>
+                </dict>
                 <dict>
                     <key>Comment</key>
                     <string>SSDT-PLUG.aml</string>
@@ -321,6 +321,8 @@
                 <false/>
                 <key>EnableWriteUnprotector</key>
                 <false/>
+	       	<key>FixupAppleEfiImages</key>
+		<false/>
                 <key>ForceBooterSignature</key>
                 <false/>
                 <key>ForceExitBootServices</key>
@@ -903,7 +905,7 @@
                     <key>Comment</key>
                     <string></string>
                     <key>Enabled</key>
-                    <false/>
+                    <true/>
                     <key>ExecutablePath</key>
                     <string>Contents/MacOS/VoltageShift</string>
                     <key>MaxKernel</key>
@@ -921,7 +923,7 @@
                     <key>Comment</key>
                     <string></string>
                     <key>Enabled</key>
-                    <false/>
+                    <true/>
                     <key>ExecutablePath</key>
                     <string>Contents/MacOS/RealtekCardReader</string>
                     <key>MaxKernel</key>
@@ -1075,6 +1077,8 @@
                 <true/>
                 <key>DisableIoMapper</key>
                 <false/>
+                <key>DisableIoMapperMapping</key>
+                <false/>
                 <key>DisableLinkeditJettison</key>
                 <true/>
                 <key>DisableRtcChecksum</key>
@@ -1130,6 +1134,8 @@
                 <string>NVRAM</string>
                 <key>HideAuxiliary</key>
                 <false/>
+                <key>InstanceIdentifier</key>
+                <string></string>
                 <key>HibernateSkipsPicker</key>
                 <true/>
                 <key>LauncherOption</key>
@@ -1392,19 +1398,19 @@
                 <key>MaxBIOSVersion</key>
                 <false/>
                 <key>MLB</key>
-                <string>InsertYours</string>
+                <string>FVF0437014N0000JC</string>
                 <key>ProcessorType</key>
                 <integer>0</integer>
                 <key>ROM</key>
-                <data>ESIzRFVm</data>
+                <data>cHeB1miH</data>
                 <key>SpoofVendor</key>
                 <true/>
                 <key>SystemProductName</key>
                 <string>MacBookPro15,4</string>
                 <key>SystemSerialNumber</key>
-                <string>InsertYours</string>
+                <string>FVFDLEZLL40Y</string>
                 <key>SystemUUID</key>
-                <string>InsertYours</string>
+                <string>02FC3BA8-1208-4A56-B78D-7935C85813AD</string>
             </dict>
             <key>UpdateDataHub</key>
             <true/>
@@ -1587,7 +1593,9 @@
             <key>Output</key>
             <dict>
                 <key>ClearScreenOnModeSwitch</key>
-                <false/>
+        		 	  <false/>
+        		  	<key>ConsoleFont</key>
+        		  	<string></string>
                 <key>ConsoleMode</key>
                 <string></string>
                 <key>DirectGopRendering</key>
@@ -1600,6 +1608,8 @@
                 <string>Disabled</string>
                 <key>IgnoreTextInGraphics</key>
                 <false/>
+                <key>InitialMode</key>
+                <string>Auto</string>
                 <key>ProvideConsoleGop</key>
                 <true/>
                 <key>ReconnectGraphicsOnConnect</key>
@@ -1655,6 +1665,8 @@
                 <false/>
                 <key>OSInfo</key>
                 <false/>
+                <key>PciIo</key>
+                <false/>
                 <key>UnicodeCollation</key>
                 <false/>
             </dict>
@@ -1686,6 +1698,8 @@
                 <integer>-1</integer>
                 <key>ResizeUsePciRbIo</key>
                 <false/>
+		<key>ShimRetainProtocol</key>
+		<false/>
                 <key>TscSyncTimeout</key>
                 <integer>0</integer>
                 <key>UnblockFsConnect</key>

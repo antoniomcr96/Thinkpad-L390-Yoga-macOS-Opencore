@@ -309,6 +309,8 @@
                 <false/>
                 <key>AvoidRuntimeDefrag</key>
                 <true/>
+		<key>ClearTaskSwitchBit</key>
+		<false/>
                 <key>DevirtualiseMmio</key>
                 <false/>
                 <key>DisableSingleUser</key>
@@ -1720,6 +1722,8 @@
                     <string>RuntimeCode</string>
                 </dict>
             </array>
+		<key>Unload</key>
+		<array/>
         </dict>
     </dict>
 </plist>
